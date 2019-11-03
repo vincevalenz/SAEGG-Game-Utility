@@ -12,19 +12,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.HashMap;
-
 public class MainActivity extends AppCompatActivity {
 
     Button register, log_in;
-    EditText First_Name, Last_Name, Email, Password;
-    String F_Name_Holder, L_Name_Holder, EmailHolder, PasswordHolder;
+    EditText UserName, Email, Password;
+    String UserName_Holder, EmailHolder, PasswordHolder;
     String finalResult;
-    String HttpURL = "https://localhost/UserRegistration.php";
     Boolean CheckEditText;
     ProgressDialog progressDialog;
-    HashMap<String,String> hashMap = new HashMap<>();
-    HttpParse httpParse = new HttpParse();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Assign Id's
-        First_Name = (EditText)findViewById(R.id.editTextF_Name);
-        Last_Name = (EditText)findViewById(R.id.editTextL_Name);
+        UserName = (EditText)findViewById(R.id.editTextUsername);
         Email = (EditText)findViewById(R.id.editTextEmail);
         Password = (EditText)findViewById(R.id.editTextPassword);
 
@@ -49,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(CheckEditText){
                     // If completed form
-                    UserRegisterFunction(F_Name_Holder,L_Name_Holder, EmailHolder, PasswordHolder);
+                    UserRegisterFunction(UserName_Holder, EmailHolder, PasswordHolder);
                 }
                 else {
                     // Failed to complete form will create warning
@@ -71,13 +66,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
         public void CheckEditTextIsEmptyOrNot(){
-            F_Name_Holder = First_Name.getText().toString();
-            L_Name_Holder = Last_Name.getText().toString();
+            UserName_Holder = UserName.getText().toString();
             EmailHolder = Email.getText().toString();
             PasswordHolder = Password.getText().toString();
 
-            if(TextUtils.isEmpty(F_Name_Holder) || TextUtils.isEmpty(L_Name_Holder)
-                    || TextUtils.isEmpty(EmailHolder) || TextUtils.isEmpty(PasswordHolder)){
+            if(TextUtils.isEmpty(UserName_Holder) || TextUtils.isEmpty(EmailHolder) || TextUtils.isEmpty(PasswordHolder)){
                 CheckEditText = false;
             }
             else {
@@ -85,8 +78,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        public void UserRegisterFunction(final String F_Name, final String L_Name,
-                                         final String email, final String password) {
+        public void UserRegisterFunction(final String username, final String email, final String password) {
 
             class UserRegisterFunctionClass extends AsyncTask<String, Void, String> {
 
@@ -120,13 +112,9 @@ public class MainActivity extends AppCompatActivity {
                 // type of request it is. After we get the inforamtion from the backend we get our
                 // final result being a completed registration.
                 @Override
-                protected String doInBackground(String... params){
-                    hashMap.put("F_name",params[0]);
-                    hashMap.put("L_name",params[1]);
-                    hashMap.put("email",params[2]);
-                    hashMap.put("password",params[3]);
+                protected String doInBackground(String ... params){
 
-                    finalResult = httpParse.postRequest(hashMap, HttpURL);
+                    // finalResult = socket.emit(params[0], params[1], params[2]);
 
                     return finalResult;
                 }
