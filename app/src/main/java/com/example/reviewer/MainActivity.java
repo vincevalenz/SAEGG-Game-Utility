@@ -1,123 +1,91 @@
 package com.example.reviewer;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.reviewer.Retrofit.INodeJS;
+import com.example.reviewer.Retrofit.RetrofitClient;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+
+
 public class MainActivity extends AppCompatActivity {
 
-    Button register, log_in;
-    EditText UserName, Email, Password;
-    String UserName_Holder, EmailHolder, PasswordHolder;
-    String finalResult;
-    Boolean CheckEditText;
-    ProgressDialog progressDialog;
+    INodeJS myAPI;
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
 
+    EditText edit_email,edit_password;
+    Button register_button,login_button;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onStop() {
+        compositeDisposable.clear();
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        compositeDisposable.clear();
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstance) {
+        super.onCreate(savedInstance);
         setContentView(R.layout.activity_main);
 
-        // Assign Id's
-        UserName = (EditText)findViewById(R.id.editTextUsername);
-        Email = (EditText)findViewById(R.id.editTextEmail);
-        Password = (EditText)findViewById(R.id.editTextPassword);
+        //Initialize APi
+        Retrofit retrofit = RetrofitClient.getInstance();
+        myAPI = retrofit.create(INodeJS.class);
 
-        register = (Button)findViewById(R.id.Submit);
-        log_in = (Button)findViewById(R.id.Login);
+        //View
+        login_button = (Button)findViewById(R.id.login_button);
+        register_button = (Button)findViewById(R.id.);
 
-        // Click Listener on Button
-        register.setOnClickListener(new View.OnClickListener() {
+        edit_email = (EditText)findViewById(R.id.edit_email);
+        edit_password = (EditText)findViewById(R.id.edit_password);
+
+        login_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                // Confirm Filled out Form
-                CheckEditTextIsEmptyOrNot();
-
-                if(CheckEditText){
-                    // If completed form
-                    UserRegisterFunction(UserName_Holder, EmailHolder, PasswordHolder);
-                }
-                else {
-                    // Failed to complete form will create warning
-                    Toast.makeText(MainActivity.this, "Please fill all form fields.",
-                            Toast.LENGTH_LONG).show();
-                }
-
+            public void onClick(View v) {
+                loginUser(edit_email.getText().toString(),edit_password.getText().toString());
             }
         });
 
-        log_in.setOnClickListener(new View.OnClickListener() {
+        register_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                // Goes to Login Window under UserLoginActivity
-                Intent intent = new Intent(MainActivity.this,UserLoginActivity.class);
-                startActivity(intent);
+            public void onClick(View v) {
+                registerUser(edit_email.getText().toString(),edit_password.getText().toString());
             }
         });
     }
 
-        public void CheckEditTextIsEmptyOrNot(){
-            UserName_Holder = UserName.getText().toString();
-            EmailHolder = Email.getText().toString();
-            PasswordHolder = Password.getText().toString();
-
-            if(TextUtils.isEmpty(UserName_Holder) || TextUtils.isEmpty(EmailHolder) || TextUtils.isEmpty(PasswordHolder)){
-                CheckEditText = false;
-            }
-            else {
-                CheckEditText = true;
-            }
-        }
-
-        public void UserRegisterFunction(final String username, final String email, final String password) {
-
-            class UserRegisterFunctionClass extends AsyncTask<String, Void, String> {
-
-                // Function executing before process is ran do display to user that the Registration
-                // is occuring
-                @Override
-                protected void onPreExecute() {
-                    // Super used to refer to parent
-                    super.onPreExecute();
-                    // This shows the user the Registration is being attempted
-                    progressDialog = ProgressDialog.show(MainActivity.this,
-                            "Loading Data",null, true, true);
-                }
-
-                // Actual Execution
-                @Override
-                protected void onPostExecute(String httpResponseMsg){
-                    super.onPostExecute(httpResponseMsg);
-
-                    // Gets rid of progressdialog from preexecute function
-                    progressDialog.dismiss();
-
-                    // Toast is a method of displaying simple feedback about an operation, in this
-                    // case, the completion of Registration
-                    Toast.makeText(MainActivity.this,httpResponseMsg.toString(),
-                            Toast.LENGTH_LONG).show();
-                }
-
-                // doInBackground takes the registration parameters, puts them into a hashMap, and
-                // then sends the data along with the HttpURL letting our httpParse object know what
-                // type of request it is. After we get the inforamtion from the backend we get our
-                // final result being a completed registration.
-                @Override
-                protected String doInBackground(String ... params){
-
-                    // finalResult = socket.emit(params[0], params[1], params[2]);
-
-                    return finalResult;
-                }
-            }
-        }
+    private void registerUser(String email, String password){
+        
     }
+
+    private void loginUser(String email, String password) {
+        compositeDisposable.add(myAPI.loginUser(email,password)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Consumer<String>() {
+            @Override
+            public void accept(String s) throws Exception {
+                if(s.contains("encrypted_password")){
+                    Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Login Failure"+s, Toast.LENGTH_SHORT).show();
+                }
+            }
+        }));
+    }
+}
