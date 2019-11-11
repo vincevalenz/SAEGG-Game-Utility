@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         //View
         login_button = (Button)findViewById(R.id.login_button);
-        register_button = (Button)findViewById(R.id.);
+        register_button = (Button)findViewById(R.id.register_button);
 
         edit_email = (EditText)findViewById(R.id.edit_email);
         edit_password = (EditText)findViewById(R.id.edit_password);
@@ -70,7 +70,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void registerUser(String email, String password){
-        
+        RegisterDialog registerDialog = new RegisterDialog();
+        registerDialog.show(getSupportFragmentManager(), "Register Dialog");
+
     }
 
     private void loginUser(String email, String password) {
