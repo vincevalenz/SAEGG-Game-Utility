@@ -2,6 +2,7 @@ package com.example.reviewer;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +16,8 @@ public class RegisterDialog extends AppCompatDialogFragment {
     private EditText editTextUsername;
     private EditText editTextPassword;
     private EditText editTextEmail;
+
+    private RegisterDialogListener listener;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -37,6 +40,8 @@ public class RegisterDialog extends AppCompatDialogFragment {
                         String username = editTextUsername.getText().toString();
                         String password = editTextPassword.getText().toString();
                         String email = editTextEmail.getText().toString();
+
+                        listener.applyTexts(username, password, email);
                     }
                 });
 
@@ -45,6 +50,18 @@ public class RegisterDialog extends AppCompatDialogFragment {
         editTextEmail = view.findViewById(R.id.edit_email);
 
         return builder.create();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try {
+            listener = (RegisterDialogListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() +
+                    "must implement Register Dialog Listener");
+        }
     }
 
     public interface RegisterDialogListener{

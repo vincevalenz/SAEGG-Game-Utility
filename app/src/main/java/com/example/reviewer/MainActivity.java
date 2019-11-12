@@ -18,13 +18,15 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RegisterDialog.RegisterDialogListener {
 
     INodeJS myAPI;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     EditText edit_email,edit_password;
     Button register_button,login_button;
+
+    String username_register, password_register, email_register;
 
     @Override
     protected void onStop() {
@@ -36,6 +38,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         compositeDisposable.clear();
         super.onDestroy();
+    }
+
+    @Override
+    public void applyTexts(String username, String password, String email) {
+        username_register = username;
+        password_register = password;
+        email_register = email;
+
+        if(username != null && password != null && email != null) {
+            registerUser(email_register, username_register, password_register);
+        }
     }
 
     @Override
@@ -64,14 +77,28 @@ public class MainActivity extends AppCompatActivity {
         register_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registerUser(edit_email.getText().toString(),edit_password.getText().toString());
+                RegisterDialog registerDialog = new RegisterDialog();
+                registerDialog.show(getSupportFragmentManager(), "Register Dialog");
+                // Actual registration function call is done in applyTexts when Popup is closed and
+                // values are entered.
             }
         });
+
+
+
+
     }
 
-    private void registerUser(String email, String password){
-        RegisterDialog registerDialog = new RegisterDialog();
-        registerDialog.show(getSupportFragmentManager(), "Register Dialog");
+    private void registerUser(String email, String username, String password){
+        compositeDisposable.add(myAPI.registerUser(email, username, password)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Consumer<String>() {
+            @Override
+            public void accept(String s) throws Exception {
+                Toast.makeText(MainActivity.this, ""+s, Toast.LENGTH_SHORT).show();
+            }
+        }));
 
     }
 
