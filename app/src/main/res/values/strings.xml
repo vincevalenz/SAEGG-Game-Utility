@@ -1,3 +1,53 @@
 <resources>
     <string name="app_name">Reviewer</string>
+
+    <!--    HomeActivity strings-->
+    <string name="rec_page_btn_text">Recommendations</string>
+    <string name="user_profile_btn_text">User Profile</string>
+    <string name="game_info_page_btn_text">Game Info</string>
+
+    <!--    ReviewActivity strings-->
+    <string name="back_button_text">BACK</string>
+    <string name="game_title">Super Mario Bros</string>
+    <string name="one_star">One Star Rating</string>
+    <string name="two_star">Two Star Rating</string>
+    <string name="three_star">Three Star Rating</string>
+    <string name="four_star">Four Star Rating</string>
+    <string name="five_star">Five Star Rating</string>
+
+    <!--    GameInfoActivity strings-->
+    <string name="action_settings">Settings</string>
+    <string name="game_summary">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+    </string>
+    <string name="game_title_text">SUPER COOL GAME</string>
 </resources>

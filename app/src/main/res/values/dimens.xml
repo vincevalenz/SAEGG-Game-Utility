@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="app_bar_height">150dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="game_summary_margin">10dp</dimen>
+    <dimen name="game_title_margin">10dp</dimen>
+</resources>
