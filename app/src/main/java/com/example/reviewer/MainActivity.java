@@ -1,5 +1,6 @@
 package com.example.reviewer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -109,12 +110,19 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
         .subscribe(new Consumer<String>() {
             @Override
             public void accept(String s) throws Exception {
-                if(s.contains("encrypted_password")){
-                    Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(MainActivity.this, "Login Failure"+s, Toast.LENGTH_SHORT).show();
-                }
+//                if(s.contains("encrypted_password")){
+//                    Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(MainActivity.this, "Login Failure"+s, Toast.LENGTH_SHORT).show();
+//                }
+                Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+                openHomeActivity();
             }
         }));
+    }
+
+    public void openHomeActivity() {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
     }
 }

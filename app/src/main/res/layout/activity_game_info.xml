@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GameInfoActivity">
+
+    <LinearLayout
+        android:id="@+id/LinearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/game_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/game_title_margin"
+            android:text="@string/game_title_text"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
+
+        <com.synnapps.carouselview.CarouselView
+            android:id="@+id/game_screenshots"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="4dp"
+            app:fillColor="#FF0000"
+            app:pageColor="#2B00FF"
+            app:radius="6dp"
+            app:slideInterval="4000"
+            app:strokeColor="#FF777777"
+            app:strokeWidth="1dp"
+            app:pageTransformer="zoom" />
+
+        <TextView
+            android:id="@+id/game_summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/game_summary_margin"
+            android:text="@string/game_summary" />
+
+    </LinearLayout>
+
+</ScrollView>
