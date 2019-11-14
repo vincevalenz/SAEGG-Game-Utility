@@ -3,14 +3,14 @@ CS370 Game Utility Project
 
 This repo is for the CS370 Fall 2019 project, Group SAEGG&CO.
 
-##Project Structure
+## Project Structure
 - Remember to create a new activity whenever necessary
 - Name new activities in the form `meaningfulNameActivity`
 - Android Studio builds a layout by default on activity creation, but ensure the layout is named after its according Activity.
     - The layout for the above activity would be `activity_meaningful_name`
 - Make use of the resource files in values (strings, dimens, etc). This is good Android practice.
 
-##Instructions to run backend server:
+## Instructions to run backend server:
 1. Install XAMPP.
 2. Start a mySQL and Apache Server
 3. Open browser and type `http://localhost/phpmyadmin/index.php`
