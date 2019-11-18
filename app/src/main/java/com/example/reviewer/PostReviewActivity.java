@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Button;
 
 public class PostReviewActivity extends AppCompatActivity {
 
@@ -16,6 +17,8 @@ public class PostReviewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_review);
+
+        Button sumbitButton = findViewById(R.id.submit_review_button);
 
         gameTitle = findViewById(R.id.game_title);
         reviewText = findViewById(R.id.review_text);
