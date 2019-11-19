@@ -14,20 +14,11 @@ var con = mysql.createConnection({
 });
 
 
-
-
-
-
-
-
-
-
-
-
 var genRandomString = function(length) {
   // creates hexidecimal random number and returns up to the inputted length
   return crypto.randomBytes(Math.ceil(length/2)).toString('hex').slice(0,length);
 }
+
 
 var sha512 = function(password, salt){
   var hash = crypto.createHmac('sha512', salt);
@@ -38,6 +29,7 @@ var sha512 = function(password, salt){
     passwordHash:value
   }
 }
+
 
 function saltHashPassword(userPassword){
   var salt = genRandomString(16);
@@ -50,10 +42,6 @@ function checkHashPassword(userPassword, salt){
   var passwordData = sha512(userPassword,salt);
   return passwordData;
 }
-
-
-
-
 
 
 var app = express();
@@ -73,20 +61,21 @@ app.post('/register/',(req, res, next)=>{
   var name = post_data.name;
   var email = post_data.email;
 
-  con.query('SELECT * FROM user where email=?',[email],function(err,result,fields){
-    con.on('error', function(err){
-      console.log('MySQL ERROR',err);
-    });
+  con.query('SELECT * FROM users WHERE email=?',[email],function(err,result,fields){
+    if(err) {
+      console.log('[MySQL ERROR]', err);
+      res.json('MySQL error:',err);
+    }
 
     if(result && result.length) {
       res.json('User already exists');
     }
     else {
-      con.query('INSERT INTO `user`(`unique_id`, `name`, `email`, `encrypted_password`, `salt`, `created_at`, `updated_at`) VALUES (?,?,?,?,?,NOW(),NOW())',[uid,name,email,password,salt],function(err,result,fields){
-      con.on('error', function(err){
-        console.log('[MySQL ERROR]',err);
-        res.json('Register error:',err);
-      });
+      con.query('INSERT INTO `users`(`unique_id`, `name`, `email`, `encrypted_password`, `salt`, `created_at`, `updated_at`) VALUES (?,?,?,?,?,NOW(),NOW())',[uid,name,email,password,salt],function(err,result,fields){
+        if(err) {
+          console.log('[MySQL ERROR]', err);
+          res.json('Register error:',err);
+        }
       res.json('Register successful');
       })
     }
@@ -101,17 +90,18 @@ app.post('/login/',(req,res,next)=>{
   var email = post_data.email;
 
 
-  con.query('SELECT * FROM user where email=?',[email],function(err,result,fields){
-    con.on('error',function(err){
-      console.log('[MYSQL ERROR]',err);
-    });
+  con.query('SELECT * FROM users WHERE email=?',[email],function(err,result,fields){
+    if(err) {
+      console.log('[MySQL ERROR]', err);
+      res.json('Login error:',err);
+    }
 
     if(result && result.length){
       var salt = result[0].salt;
       var encrypted_password = result[0].encrypted_password;
       var hashed_password = checkHashPassword(user_password, salt).passwordHash;
       if(encrypted_password == hashed_password){
-        res.end(JSON.stringify(result[0])) // If password is true, return all infor of user
+        res.end(JSON.stringify(result[0])) // If password is true, return all information of user
       } else {
         res.end(JSON.stringify('Wrong information'));
       }
@@ -121,28 +111,160 @@ app.post('/login/',(req,res,next)=>{
   });
 
 
-
-  con.query('select * from user where email=?',[email],function(error,result,fields){
-    con.on('error', function(err){
-      console.log('[MySQL ERROR]',err);
+  con.query('SELECT * FROM users WHERE email=?',[email],function(error,result,fields){
+    if(err) {
+      console.log('[MySQL ERROR]', err);
       res.json('Login error:',err);
-    });
-
-
-
-
+    }
   })
+
 })
 
 
-// app.get("/", (req, res, next)=>{
-//   console.log('Password: 123456');
-//   var encrypt = saltHashPassword("123456");
-//   console.log('Encrypt: ' + encrypt.passwordHash);
-//   console.log('Salt: ' + encrypt.salt);
-// })
+app.post('/postReview/',(req,res,next)=>{
+  var post_data = req.body;
+  var gameId = post_data.game_id;
+  var email = post_data.email;
+  var password = post_data.password;
+  var reviewRating = post_data.review_rating;
+  var writtenReview = post_data.written_review;
+
+  // Fist tests verifying user
+  con.query('SELECT * FROM users WHERE email=?',[email],function(err,result,fields){
+    if(err) {
+      console.log('[MySQL ERROR]', err);
+      res.json('Credentials error:', err);
+    }
+
+    if(result && result.length){
+      var salt = result[0].salt;
+      var encrypted_password = result[0].encrypted_password;
+      var hashed_password = checkHashPassword(user_password, salt).passwordHash;
+      if(encrypted_password == hashed_password){
+        // Password is true
+
+        con.query('INSERT INTO `Reviews`(`game_id`, `unique_id`, `review_rating`, `written_review`) VALUES (?,?,?,?)',[gameId,unique_id,reviewRating,writtenReview],function(err,result,fields){
+          if(err) {
+            console.log('[MySQL ERROR]', err);
+            res.json('Post error:', err);
+          }
+        res.json('Post successful');
+        })
 
 
+
+      } else {
+        res.end(JSON.stringify('Wrong information'));
+      }
+    } else {
+      res.json('User does not exist');
+    }
+  });
+
+})
+
+
+app.get('/getGamesList/',(req,res,next)=>{
+  var post_data = req.body;
+  var amount = post_data.amount;
+  var page = post_data.page;
+
+  var pagingOffset = amount * (page - 1);
+
+  con.query('SELECT game_name FROM games LIMIT ? OFFSET pagingOffset ?', [amount, pagingOffset], function(err, result, fields){
+    if(err) {
+      console.log('[MySQL ERROR]', err);
+      res.json('Get error:', err);
+    }
+    res.json(result);
+  });
+
+});
+
+
+app.get('/getProfileUser/',(req,res,next)=>{
+  var post_data = req.body;
+  var name = post_data.unique_id;
+
+  con.query('SELECT name, created_at, updated_at FROM users WHERE unique_id = ?', [unique_id], function(err, result, fields){
+    if(err) {
+      console.log('[MySQL ERROR]', err);
+      res.json('Get error:', err);
+    }
+    res.json(result);
+  })
+
+})
+
+
+app.get('/getProfileReview/',(req,res,next)=>{
+  var post_data = req.body;
+  var name = post_data.unique_id;
+
+  con.query('SELECT game_name, review_rating, written_review FROM review WHERE unique_id = ?', [unique_id], function(err, result, fields){
+    if(err) {
+      console.log('[MySQL ERROR]', err);
+      res.json('Get error:', err);
+    }
+    res.json(result);
+  })
+
+})
+
+
+app.get('/getGameInfo/',(req,res,next)=>{
+  var post_data = req.body;
+  var gameId = post_data.game_id;
+
+  con.query('SELECT game_name, game_description FROM games WHERE game_id = ?', [gameId], function(err, result, fields){
+    if(err) {
+      console.log('[MySQL Error]', err);
+      res.json('Get Error:', err);
+    }
+    res.json(result);
+  })
+
+})
+
+
+app.get('/getGameReviews/',(req,res,next)=>{
+  var post_data = req.body;
+  var amount = post_data.amount;
+  var page = post_data.page;
+  var gameId = post_data.game_id;
+
+  var pagingOffset = amount * (page - 1);
+
+  con.query('SELECT unique_id, name, review_rating, written_review FROM reviews WHERE game_id = ? LIMIT ? OFFSET pagingOffset ?', [gameId, amount, pagingOffset], function(err, result, fields){
+    if(err) {
+      console.log('[MySQL ERROR]', err);
+      res.json('Get error:', err);
+    }
+    res.json(result);
+  });
+
+})
+
+
+app.get('/getSpecificGames/',(req,res,next)=>{
+  var post_data = req.body;
+  var gameId[post_data.game_id.length()] = post_data.game_id;
+
+  var resultArray = new Array(gameId.length());
+
+  for(i=0; i<=gameId.length(); i++){
+    con.query('SELECT game_name FROM games WHERE game_id = ?', [gameId[i]], function(err, result, fields){
+      if(err) {
+        console.log('[MySQL ERROR]', err);
+        res.json('Get error:', err);
+      }
+      resultArray.push(result);
+    })
+  }
+
+  res.json(resultArray);
+
+})
 
 
 
