@@ -5,15 +5,18 @@
     <string name="rec_page_btn_text">Recommendations</string>
     <string name="user_profile_btn_text">User Profile</string>
     <string name="game_info_page_btn_text">Game Info</string>
+    <string name="review_button">Review Game</string>
 
     <!--    ReviewActivity strings-->
-    <string name="back_button_text">BACK</string>
+    <string name="preview_button">Preview</string>
+    <string name="submit_button">Submit</string>
     <string name="game_title">Super Mario Bros</string>
     <string name="one_star">One Star Rating</string>
     <string name="two_star">Two Star Rating</string>
     <string name="three_star">Three Star Rating</string>
     <string name="four_star">Four Star Rating</string>
     <string name="five_star">Five Star Rating</string>
+
 
     <!--    GameInfoActivity strings-->
     <string name="action_settings">Settings</string>
