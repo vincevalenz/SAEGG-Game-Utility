@@ -11,8 +11,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.Locale;
 
-public class ReviewActivity extends AppCompatActivity implements View.OnClickListener, Serializable {
+public class ReviewActivity extends AppCompatActivity implements View.OnClickListener, Serializable, PreviewDialog.PreviewDialogListener {
 
     private ImageButton exitButton,
             oneStar,
@@ -62,15 +63,15 @@ public class ReviewActivity extends AppCompatActivity implements View.OnClickLis
         postReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UserReview review = new UserReview(reviewText.getText().toString(),
-                        reviewTitle.getText().toString(),
-                        gameTitle.getText().toString(),
-                        rating);
 
-                Intent intent = new Intent(ReviewActivity.this, PostReviewActivity.class);
+                openPreviewDialog(  reviewText.getText().toString(),
+                                    reviewTitle.getText().toString(),
+                                    gameTitle.getText().toString(),
+                                    rating);
+                //Intent intent = new Intent(ReviewActivity.this, PostReviewActivity.class);
 
-                intent.putExtra("user_review", review);
-                startActivity(intent);
+                //intent.putExtra("user_review", review);
+                //startActivity(intent);
 
             }
         });
@@ -81,27 +82,40 @@ public class ReviewActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.one_star_button:
-                if (rating == 1.0) rating = 1.0;
+                if (rating == 1.0) rating = 0.0;
                 else rating = 1.0;
                 break;
             case R.id.two_star_button:
-                if (rating == 2.0) rating = 1.0;
+                if (rating == 2.0) rating = 0.0;
                 else rating = 2.0;
                 break;
             case R.id.three_star_button:
-                if (rating == 3.0) rating = 1.0;
+                if (rating == 3.0) rating = 0.0;
                 else rating = 3.0;
                 break;
             case R.id.four_star_button:
-                if (rating == 4.0) rating = 1.0;
+                if (rating == 4.0) rating = 0.0;
                 else rating = 4.0;
                 break;
             case R.id.five_star_button:
-                if (rating == 5.0) rating = 1.0;
+                if (rating == 5.0) rating = 0.0;
                 else rating = 5.0;
                 break;
         }
-        ratingDisplay.setText(rating.toString());
+        if (rating == 0.0) {
+            ratingDisplay.setText("");
+            return;
+        }
+        ratingDisplay.setText(String.format(Locale.ENGLISH, "%f", rating));
+    }
 
+    public void openPreviewDialog(String gameTitle, String reviewTitle, String reviewBody, Double rating){
+        PreviewDialog preview = PreviewDialog.newInstance(gameTitle, reviewTitle, reviewBody, rating);
+        preview.show(getSupportFragmentManager(), "preview dialog");
+    }
+
+    @Override
+    public void onSubmitPreview(String gameTitle, String reviewTitle, String reviewBody, Double reviewRating) {
+        UserReview review = new UserReview(gameTitle, reviewTitle, reviewBody, rating);
     }
 }
