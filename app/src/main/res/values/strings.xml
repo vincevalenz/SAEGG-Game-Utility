@@ -6,6 +6,7 @@
     <string name="user_profile_btn_text">User Profile</string>
     <string name="game_info_page_btn_text">Game Info</string>
     <string name="review_button">Review Game</string>
+    <string name="admin_add_game_btn_text">ADMIN: Add game to db</string>
 
     <!--    ReviewActivity strings-->
     <string name="preview_button">Preview</string>

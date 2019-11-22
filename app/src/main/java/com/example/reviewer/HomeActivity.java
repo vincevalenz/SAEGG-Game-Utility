@@ -7,9 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.reviewer.AdminActivities.AddGameActivity;
+
 public class HomeActivity extends AppCompatActivity {
 
-    Button rec_page_button, usr_profile_button, game_info_button, rev_game_button;
+    Button rec_page_button,
+            usr_profile_button,
+            game_info_button,
+            rev_game_button,
+            admin_add_game_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +26,7 @@ public class HomeActivity extends AppCompatActivity {
         usr_profile_button = findViewById(R.id.user_profile_page_button);
         game_info_button = findViewById(R.id.game_info_page_button);
         rev_game_button = findViewById(R.id.review_game_button);
+        admin_add_game_button = findViewById(R.id.admin_add_game_button);
 
         rec_page_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +55,13 @@ public class HomeActivity extends AppCompatActivity {
                 openReviewPage();
             }
         });
+
+        admin_add_game_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openAdminAddGamePage();
+            }
+        });
     }
 
     public void openRecPage() {
@@ -67,6 +81,11 @@ public class HomeActivity extends AppCompatActivity {
 
     public void openReviewPage() {
         Intent intent = new Intent(this, ReviewActivity.class);
+        startActivity(intent);
+    }
+
+    public void openAdminAddGamePage() {
+        Intent intent = new Intent(this, AddGameActivity.class);
         startActivity(intent);
     }
     // ... more navigation

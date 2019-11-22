@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 .idea/vcs.xml
+/src/main/schemas/com.example.reviewer.RoomDb.AppDatabase/1.json
+/app/schemas/com.example.reviewer.RoomDb.AppDatabase/1.json

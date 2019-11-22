@@ -14,7 +14,7 @@ import com.synnapps.carouselview.ImageListener;
 public class GameInfoActivity extends AppCompatActivity {
 
     CarouselView carouselView;
-    GameInfoModel game = new GameInfoModel("Destiny_2");
+    GameInfoModel game = new GameInfoModel();
     public String[] images = new String[5];
 
     @Override
