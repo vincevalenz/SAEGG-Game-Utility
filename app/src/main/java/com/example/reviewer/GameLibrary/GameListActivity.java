@@ -35,7 +35,6 @@ public class GameListActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getBaseContext());
         recyclerView.setLayoutManager(layoutManager);
 
-
         List<Game> gameModels = gameDb.gameDao().getAllGames();
 
         System.out.println("DEBUG: GameModel[0] name is: " + gameModels.get(0).getName());
@@ -43,4 +42,5 @@ public class GameListActivity extends AppCompatActivity {
         GameViewAdapter gameViewAdapter = new GameViewAdapter(gameModels);
         recyclerView.setAdapter(gameViewAdapter);
     }
+
 }
