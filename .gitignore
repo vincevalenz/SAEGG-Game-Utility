@@ -15,3 +15,4 @@
 .idea/vcs.xml
 /src/main/schemas/com.example.reviewer.RoomDb.AppDatabase/1.json
 /app/schemas/com.example.reviewer.RoomDb.AppDatabase/1.json
+com/example/reviewer/models/TESTING_image_urls.txt

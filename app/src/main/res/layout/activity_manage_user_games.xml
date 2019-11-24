@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AdminActivities.AddGameActivity">
+    tools:context=".GameLibraryActivities.ManageUserGamesActivity">
 
 
     <EditText
@@ -30,6 +30,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="View all games"/>
+
+    <Button
+        android:id="@+id/delete_all_games_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_dark"
+        android:textColor="@android:color/black"
+        android:text="DELETE ALL GAMES"/>
+
+    <Button
+        android:id="@+id/delete_entry_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_dark"
+        android:textColor="@android:color/black"
+        android:text="Delete"/>
 
     <TextView
         android:id="@+id/game_list_text"

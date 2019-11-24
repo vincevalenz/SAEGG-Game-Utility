@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.reviewer.AdminActivities.AddGameActivity;
+import com.example.reviewer.GameLibraryActivities.ManageUserGamesActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -85,7 +85,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void openAdminAddGamePage() {
-        Intent intent = new Intent(this, AddGameActivity.class);
+        Intent intent = new Intent(this, ManageUserGamesActivity.class);
         startActivity(intent);
     }
     // ... more navigation
