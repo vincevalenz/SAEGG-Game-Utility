@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.reviewer.GameLibraryActivities.ManageUserGamesActivity;
+import com.example.reviewer.GameLibrary.ManageUserGamesActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
