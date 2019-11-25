@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import com.example.reviewer.R;
-import com.example.reviewer.RoomDb.Game;
+import com.example.reviewer.RoomDb.Models.Game;
 
 public class GameViewAdapter extends RecyclerView.Adapter<GameViewHolder> {
     private String TAG = "GameViewAdapter";

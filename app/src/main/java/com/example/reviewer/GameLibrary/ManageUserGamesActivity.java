@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.example.reviewer.R;
 import com.example.reviewer.RoomDb.AppDatabase;
-import com.example.reviewer.RoomDb.Game;
+import com.example.reviewer.RoomDb.Models.Game;
 
 import java.util.List;
 import java.util.Random;

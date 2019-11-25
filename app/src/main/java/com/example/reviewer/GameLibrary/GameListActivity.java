@@ -9,8 +9,7 @@ import android.os.Bundle;
 
 import com.example.reviewer.R;
 import com.example.reviewer.RoomDb.AppDatabase;
-import com.example.reviewer.RoomDb.Game;
-import com.example.reviewer.models.GameInfoModel;
+import com.example.reviewer.RoomDb.Models.Game;
 
 import java.util.List;
 

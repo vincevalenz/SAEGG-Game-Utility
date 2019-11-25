@@ -1,10 +1,8 @@
-package com.example.reviewer.RoomDb;
+package com.example.reviewer.RoomDb.Models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-import java.util.ArrayList;
 
 @Entity(tableName = "games")
 public class Game {

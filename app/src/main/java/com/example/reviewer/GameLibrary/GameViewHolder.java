@@ -10,8 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.reviewer.R;
-import com.example.reviewer.RoomDb.Game;
-import com.example.reviewer.models.GameInfoModel;
+import com.example.reviewer.RoomDb.Models.Game;
 
 public class GameViewHolder extends RecyclerView.ViewHolder {
     private TextView gameNameTextView;

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.example.reviewer.RoomDb.Game;
+import com.example.reviewer.RoomDb.Models.Game;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
