@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:background="@color/colorPreviewDialogBackground"
+        tools:context=".ReviewActivity">
+
+
+
+            <TextView
+                android:id="@+id/game_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginLeft="10sp"
+                android:layout_marginStart="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginEnd="10sp"
+                android:textAllCaps="true"
+                app:fontFamily="monospace"
+                android:textSize="18sp"
+                android:textColor="@color/colorPreviewDialog"
+                android:gravity="center|top"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/game_rating"/>
+
+
+
+            <TextView
+                android:id="@+id/game_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginLeft="10sp"
+                android:layout_marginStart="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginEnd="10sp"
+                app:fontFamily="monospace"
+                android:textSize="14sp"
+                android:textColor="@color/colorPreviewDialog"
+                app:layout_constraintTop_toBottomOf="@+id/game_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/review_text_scroll_view"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        <ScrollView
+            android:id="@+id/review_text_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/game_rating">
+            <TextView
+                android:id="@+id/review_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginLeft="10sp"
+                android:layout_marginStart="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginEnd="10sp"
+                android:textSize="14sp"
+                app:fontFamily="monospace"
+                android:textColor="@color/colorPreviewDialog"
+                app:layout_constraintTop_toBottomOf="@id/game_title"/>
+        </ScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

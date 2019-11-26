@@ -10,6 +10,7 @@
     <!--    ReviewActivity strings-->
     <string name="preview_button">Preview</string>
     <string name="submit_button">Submit</string>
+    <string name="exit_button">Exit</string>
     <string name="game_title">Super Mario Bros</string>
     <string name="one_star">One Star Rating</string>
     <string name="two_star">Two Star Rating</string>
