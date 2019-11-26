@@ -14,7 +14,6 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".UserProfileActivity"></activity>
         <activity android:name=".RecommendsActivity" />
-        <activity android:name=".PostReviewActivity" />
         <activity android:name=".GameInfoActivity" />
         <activity android:name=".ReviewActivity" />
         <activity android:name=".HomeActivity" />

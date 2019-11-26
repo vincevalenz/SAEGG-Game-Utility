@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
@@ -16,20 +17,18 @@ import java.util.Locale;
 public class PreviewDialog extends AppCompatDialogFragment {
 
     private TextView gameTitle,
-            reviewTitle,
-            reviewBody,
-            gameRating;
+                     reviewBody,
+                     gameRating;
     private PreviewDialogListener listener;
 
-    static PreviewDialog newInstance(String gameTitle, String reviewTitle, String reviewBody, Double rating) {
+    static PreviewDialog newInstance(String gameTitle, String reviewBody, int rating) {
         PreviewDialog preview = new PreviewDialog();
 
-        // Supply num input as an argument.
+        // Supply input as an arguments to display.
         Bundle args = new Bundle();
         args.putString("gameTitle", gameTitle);
-        args.putString("reviewTitle", reviewTitle);
         args.putString("reviewBody", reviewBody);
-        args.putDouble("gameRating", rating);
+        args.putInt("gameRating", rating);
         preview.setArguments(args);
 
         return preview;
@@ -42,6 +41,7 @@ public class PreviewDialog extends AppCompatDialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_preview, null);
 
+
         builder.setView(view)
                 .setTitle("Preview")
                 .setNegativeButton("Edit", new DialogInterface.OnClickListener() {
@@ -53,19 +53,23 @@ public class PreviewDialog extends AppCompatDialogFragment {
                 .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //submit()
+                        int game = Integer.parseInt(gameTitle.getText().toString()),        // TBD where from
+                            rating = Integer.parseInt(gameRating.getText().toString());
+                        String review = reviewBody.getText().toString();
+                             //   email = ,                                                // TBD where from
+                             //   password = ;                                              // TBD where from
+
+                        //listener.applyTexts(game, email, password, rating, review);
                     }
                 });
 
         gameTitle = view.findViewById(R.id.game_title);
         reviewBody = view.findViewById(R.id.review_text);
-        reviewTitle = view.findViewById(R.id.review_title_text);
         gameRating = view.findViewById(R.id.game_rating);
 
         gameTitle.setText(getArguments().getString("gameTitle"));
-        reviewTitle.setText(getArguments().getString("reviewTitle"));
         reviewBody.setText(getArguments().getString("reviewBody"));
-        gameRating.setText(String.format(Locale.ENGLISH, "%f", getArguments().getDouble("gameRating")));
+        gameRating.setText(String.format(Locale.ENGLISH, "%d", getArguments().getInt("gameRating")) + " Stars");
 
         return builder.create();
     }
@@ -82,7 +86,7 @@ public class PreviewDialog extends AppCompatDialogFragment {
     }
 
     public interface PreviewDialogListener {
-        void onSubmitPreview(String gameTitle, String reviewTitle, String reviewBody, Double reviewRating);
+        void applyTexts(int gameID, String email, String password, int rating, String review);
     }
 
 }
