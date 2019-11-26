@@ -36,7 +36,9 @@ public class GameListActivity extends AppCompatActivity {
 
         List<Game> gameModels = gameDb.gameDao().getAllGames();
 
-        System.out.println("DEBUG: GameModel[0] name is: " + gameModels.get(0).getName());
+        for(int i = 0; i < gameModels.size(); i++) {
+            System.out.println("DEBUG: GameModel[" + i + "] name is: " + gameModels.get(i).getName());
+        }
 
         GameViewAdapter gameViewAdapter = new GameViewAdapter(gameModels);
         recyclerView.setAdapter(gameViewAdapter);

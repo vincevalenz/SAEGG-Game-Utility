@@ -1,6 +1,7 @@
 package com.example.reviewer.RoomDb.Daos;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -16,6 +17,9 @@ public interface GameDao {
 
     @Query("SELECT * FROM games")
     List<Game> getAllGames();
+
+    @Query("SELECT * FROM games WHERE game_name LIKE :name")
+    Game getGame(String name);
 
     @Query("DELETE FROM games")
     void deleteAll();

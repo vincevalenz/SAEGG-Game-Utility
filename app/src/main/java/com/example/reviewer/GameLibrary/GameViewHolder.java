@@ -25,9 +25,13 @@ public class GameViewHolder extends RecyclerView.ViewHolder {
     public void bindView(final Game game) {
         Glide.with(this.itemView)
                 .load(game.getImage_urls()[0])
+                .override(500,500)
+                .centerCrop()
                 .placeholder(R.drawable.placeholder)
                 .error(new ColorDrawable(Color.RED))
                 .into(gamePicImageView);
+
+        System.out.println("DEBUG: name: " + game.getName());
 
         gameNameTextView.setText(game.getName());
 
