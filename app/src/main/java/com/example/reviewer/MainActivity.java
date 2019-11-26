@@ -8,9 +8,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import com.example.reviewer.Retrofit.INodeJS;
 import com.example.reviewer.Retrofit.RetrofitClient;
+import com.example.reviewer.RoomDb.AppDatabase;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -56,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_main);
+
+        //initialize Room db
 
         //Initialize APi
         Retrofit retrofit = RetrofitClient.getInstance();

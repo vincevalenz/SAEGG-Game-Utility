@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/game_title_margin"
-            android:text="@string/game_title_text"
+            android:text="@string/game_title_text_placeholder"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
 
         <com.synnapps.carouselview.CarouselView
@@ -39,7 +39,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/game_summary_margin"
-            android:text="@string/game_summary" />
+            android:text="@string/game_summary_placeholder" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/test_image"/>
+
 
     </LinearLayout>
 

@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".UserProfileActivity"></activity>
+        <activity android:name=".GameLibrary.GameListActivity"></activity>
+        <activity android:name=".GameLibrary.ManageUserGamesActivity" />
+        <activity android:name=".UserProfileActivity" />
         <activity android:name=".RecommendsActivity" />
         <activity android:name=".GameInfoActivity" />
         <activity android:name=".ReviewActivity" />

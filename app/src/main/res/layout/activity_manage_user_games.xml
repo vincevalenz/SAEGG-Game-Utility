@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".GameLibrary.ManageUserGamesActivity">
+
+    <RelativeLayout
+        android:id="@+id/relative_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edit_game_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="game name..."/>
+
+        <EditText
+            android:id="@+id/edit_game_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_game_name"
+            android:layout_margin="16dp"
+            android:hint="game description..."/>
+
+        <EditText
+            android:id="@+id/edit_game_img_urls"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_below="@id/edit_game_description"
+            android:layout_margin="16dp"
+            android:hint="Enter image urls separated by commas..."/>
+
+        <Button
+            android:id="@+id/add_game_button"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/edit_game_img_urls"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:text="ADD GAME"/>
+
+        <Button
+            android:id="@+id/view_all_games_button"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/edit_game_img_urls"
+            android:layout_toRightOf="@+id/add_game_button"
+            android:layout_toEndOf="@+id/add_game_button"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+
+            android:text="View all games"/>
+
+        <Button
+            android:id="@+id/delete_all_games_button"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:textColor="@android:color/black"
+            android:layout_below="@id/add_game_button"
+            android:layout_toRightOf="@+id/view_list_button"
+            android:layout_toEndOf="@+id/view_list_button"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="32dp"
+            android:text="DELETE ALL GAMES"/>
+
+        <Button
+            android:id="@+id/view_list_button"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/add_game_button"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:text="VIEW LIST" />
+
+        <Button
+            android:id="@+id/populate_db_button"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:text="Populate Db"
+            android:layout_below="@+id/view_list_button"/>
+
+        <TextView
+            android:id="@+id/game_list_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/populate_db_button"
+            android:layout_centerHorizontal="true"
+            android:text=""/>
+
+
+
+
+
+    </RelativeLayout>
+</ScrollView>

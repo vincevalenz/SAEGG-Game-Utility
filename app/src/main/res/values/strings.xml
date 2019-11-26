@@ -6,6 +6,7 @@
     <string name="user_profile_btn_text">User Profile</string>
     <string name="game_info_page_btn_text">Game Info</string>
     <string name="review_button">Review Game</string>
+    <string name="admin_add_game_btn_text">ADMIN: Add game to db</string>
 
     <!--    ReviewActivity strings-->
     <string name="preview_button">Preview</string>
@@ -20,7 +21,7 @@
 
     <!--    GameInfoActivity strings-->
     <string name="action_settings">Settings</string>
-    <string name="game_summary">
+    <string name="game_summary_placeholder">
 
         "Material is the metaphor.\n\n"
 
@@ -53,5 +54,137 @@
         "The fundamentals of light, surface, and movement are key to conveying how objects move, "
         "interact, and exist in space and in relation to each other. Realistic lighting shows "
     </string>
-    <string name="game_title_text">SUPER COOL GAME</string>
+    <string name="game_title_text_placeholder">SUPER COOL GAME</string>
+    <string name="test_game_name_1">Destiny 2</string>
+    <string name="test_game_name_2">Runescape</string>
+    <string name="test_game_name_3">Death Stranding</string>
+    <string name="test_game_name_4">Cyberpunk 2077</string>
+    <string name="test_game_name_5">Final Fantasy XIV: Shadowbringers</string>
+    <string name="test_game_name_6">Borderlands 3</string>
+    <string name="test_game_name_7">The Witcher 3: Wild Hunt</string>
+    <string name="test_game_name_8">Tom Clancy\'s Rainbow Six Siege</string>
+    <string name="test_game_name_9">Sekiro: Shadows Die Twice</string>
+    <string name="test_game_name_10">RUINER</string>
+
+    <string name="test_game_desc_1">ERIS MORN RETURNS
+As the heroes of the last safe city turn their attention to the far-reaching frontiers of our galaxy, new Nightmares have emerged from an ancient evil that once slumbered beneath the Lunar surface.
+
+        CONQUER YOUR FEARS
+Return to the Moon. Journey deep into a mysterious Hive Keep. Work with Eris to slay the Nightmares before they cast humanity into an age of darkness for good.
+
+        RISE TO NEW HEIGHTS
+Fight, earn, and infuse to reach the new Power cap of 960. Level up your Seasonal Artifact and exceed the Power limit of your weapons and armor to overcome impossible challenges.
+
+    INTRODUCING FINISHERS
+AVAILABLE TO ALL DESTINY 2 PLAYERS
+        CLASS THEMED
+Blast arcane energy as a Warlock, flourish your knives as a Hunter, and strike with the greatest Titan weapon of all, your fist.
+        CLOSE QUARTERS COMBAT
+Rush a weakened enemy to activate a devastating final blow.
+        RISK &amp; REWARD
+Equip Finisher Mods that use Super energy to customize its effects, such as self-healing or spawning ammo for your fireteam.
+
+        HUNT FOR ALL NEW GEAR
+Discover unique weapons and armor in ways both new and old - construct weapons out of Nightmare Essence with Eris Morn, gather Vex-themed gear through the Season Pass, and collect exciting new Exotics from quests and enemy drops.
+
+        GARDEN OF SALVATION
+A signal emerges from the dark and reaches beyond dimensions, into the uncharted wilds of the Black Garden. Where it leads inside the Garden remains a mystery. One that whispers with temptation, yearning to be solved.
+
+        SEASON OF THE UNDYING
+        Defend our Moon from the Vex invasion and face the Undying Mind. In Season of the Undying, you will experience a new activity, discover new exotic weapons, collect exclusive universal ornaments, and grow more powerful.
+    </string>
+
+    <string name="test_game_desc_2">A unique MMO set in the vast, fantasy world of Gielinor, brimming with diverse races, guilds and ancient gods battling for dominion. RuneScape now features more ways to play, brand new skills and over 200 gripping story-driven quests.</string>
+
+    <string name="test_game_desc_3">Tomorrow Is In Your Hands
+After the collapse of civilization, Sam Bridges must journey across a ravaged landscape crawling with otherworldly threats to save mankind from the brink of extinction. From legendary game creator Hideo Kojima comes an all-new, genre-defying experience for the PlayStation®4 system.
+
+Starring Norman Reedus, Mads Mikkelsen, Léa Seydoux, and Lindsay Wagner.</string>
+
+    <string name="test_game_desc_4">Cyberpunk 2077 is an open-world, action-adventure story set in Night City, a megalopolis
+obsessed with power, glamour and body modification. You play as V, a mercenary outlaw going after a one-of-a-kind implant that is the key to immortality. You can customize your character’s cyberware, skillset and playstyle, and explore a vast city where the choices you make shape the story and the world around you.</string>
+
+    <string name="test_game_desc_5">Take part in the next saga of the critically acclaimed FINAL FANTASY® XIV Online with the next legendary expansion pack—SHADOWBRINGERS!
+
+        Explore breathtaking new environments, encounter exotic new races, master exciting new jobs, and fight alongside prominent characters with the new Trust system as you embark on a new journey as the Warrior of Darkness!
+
+        With over 16 million adventurers worldwide, join the next chapter and become what you must. Become the Warrior of Darkness!
+</string>
+
+    <string name="test_game_desc_6">WELCOME TO BORDERLANDS 3
+At the hard edge of the galaxy lies a group of planets ruthlessly exploited by militarized corporations. Brimming with loot and violence, this is your home—the Borderlands. Now, a crazed cult known as The Children of the Vault has emerged and is spreading like an interstellar plague. Play solo or co-op as one of four unique Vault Hunters, score loads of loot, and save the galaxy from this fanatical threat.</string>
+
+    <string name="test_game_desc_7">The Witcher: Wild Hunt is a story-driven open world RPG set in a visually stunning fantasy universe full of meaningful choices and impactful consequences. In The Witcher, you play as professional monster hunter Geralt of Rivia tasked with finding a child of prophecy in a vast open world rich with merchant cities, pirate islands, dangerous mountain passes, and forgotten caverns to explore.</string>
+
+    <string name="test_game_desc_8">Master the art of destruction and gadgetry in Tom Clancy’s Rainbow Six Siege. Face intense close quarters combat, high lethality, tactical decision making, team play and explosive action within every moment. Experience a new era of fierce firefights and expert strategy born from the rich legacy of past Tom Clancy\'s Rainbow Six games.</string>
+
+    <string name="test_game_desc_9">With over 50 awards and nominations, Sekiro: Shadows Die Twice is the next adventure from developer FromSoftware, creators of Bloodborne and the Dark Souls series. Carve your own clever path to vengeance in this all-new action-adventure title.
+
+In Sekiro: Shadows Die Twice you are the "one-armed wolf", a disgraced and disfigured warrior rescued from the brink of death. Bound to protect a young lord who is the descendant of an ancient bloodline, you become the target of many vicious enemies, including the dangerous Ashina clan. When the young lord is captured, nothing will stop you on a perilous quest to regain your honor, not even death itself.
+
+Explore late 1500s Sengoku Japan, a brutal period of constant life and death conflict, as you come face to face with larger than life foes in a dark and twisted world. Unleash an arsenal of deadly prosthetic tools and powerful ninja abilities while you blend stealth, vertical traversal, and visceral head to head combat in a bloody confrontation.
+
+Take Revenge. Restore your honor. Kill Ingeniously.</string>
+
+    <string name="test_game_desc_10">RUINER is a brutal action shooter set in the year 2091 in the cyber metropolis Rengkok. A wired psychopath lashes out against a corrupt system to uncover the truth and retrieve his kidnapped brother under the guidance of a secretive hacker friend. Combine preternatural reflexes, augmented tools, and the arsenal of fallen foes to tear down and dismantle the corporate titans of virtuality dealers at HEAVEN.</string>
+
+    <string name = "game_1_img_1">https://specials-images.forbesimg.com/imageserve/5dd3f75ee0af7b0006b1afe6/960x0.jpg?fit=scale</string>
+    <string name = "game_1_img_2">https://cdn.vox-cdn.com/thumbor/KTeBCvpJ9zogaT9IHfyVpkqd5pU=/0x0:1920x1080/1200x675/filters:focal(859x0:1165x306)/cdn.vox-cdn.com/uploads/chorus_image/image/61407537/Hammer_Titan.0.jpg</string>
+    <string name = "game_1_img_3">https://steamcdn-a.akamaihd.net/steam/apps/1085660/ss_01ba13f9c57e39fe11e5ec5dd3b13313af310f0e.1920x1080.jpg?t=1570039639</string>
+    <string name = "game_1_img_4">https://specials-images.forbesimg.com/imageserve/5dcde98a2c886a0007ec286b/960x0.jpg?fit=scale</string>
+    <string name = "game_1_img_5">https://specials-images.forbesimg.com/imageserve/5da07ab06763cb0006087f16/960x0.jpg?fit=scale</string>
+
+    <string name = "game_2_img_1">https://s3.amazonaws.com/ebaumsworld.prod/uploads1517445898749-old-school-runescape-mobile-2.jpg</string>
+    <string name = "game_2_img_2">https://pmcvariety.files.wordpress.com/2018/09/old-school-runescape.jpg?w=1000&amp;h=563&amp;crop=1</string>
+    <string name = "game_2_img_3">https://www.runescape.com/img/rsp777/social-share-fb.jpg?1</string>
+    <string name = "game_2_img_4">https://qtoptens.com/wp-content/uploads/2018/11/osrs_bolts.jpg</string>
+    <string name = "game_2_img_5">http://i.imgur.com/VRaNBZ6.png</string>
+
+    <string name = "game_3_img_1">https://img.cinemablend.com/filter:scale/quill/b/a/5/4/b/d/ba54bdae5f39d636f33ce299d4eb008417180976.jpg?mw=600</string>
+    <string name = "game_3_img_2">https://cdn.mos.cms.futurecdn.net/ywxaCui26PhnHWgsSaDTHb.jpg</string>
+    <string name = "game_3_img_3">https://media.playstation.com/is/image/SCEA/death-stranding-screen-04-ps4-us-28may19?$native_nt$</string>
+    <string name = "game_3_img_4">https://twinfinite.net/wp-content/uploads/2019/11/death-stranding.jpeg</string>
+    <string name = "game_3_img_5">https://cdn.wccftech.com/wp-content/uploads/2019/05/WCCFdeathstranding9.jpg</string>
+
+    <string name = "game_4_img_1">https://cdn.wccftech.com/wp-content/uploads/2013/01/CyberPunk-2077-logo.jpg</string>
+    <string name = "game_4_img_2">https://www.pcgamesn.com/wp-content/uploads/2019/06/cyberpunk-2077-release-date-580x334.jpg</string>
+    <string name = "game_4_img_3">https://cdn.vox-cdn.com/thumbor/zHsTB6iAk952TA8t8NNqHJv0JTM=/0x0:3840x2160/1200x800/filters:focal(1737x1070:2351x1684)/cdn.vox-cdn.com/uploads/chorus_image/image/61039985/cyberpunk_2077_screenshot_04_3840.0.jpg</string>
+    <string name = "game_4_img_4">https://i.gadgets360cdn.com/large/cyberpunk-2077_1535441606529.jpg</string>
+    <string name = "game_4_img_5">https://cnet3.cbsistatic.com/img/ke4LAl7QAjXLLH1o-fPzbFbvsbI=/1092x0/2018/08/27/91acdd6c-4537-4da5-a793-5564347dc136/screen-shot-2018-08-27-at-10-28-44-am-1.png</string>
+
+    <string name = "game_5_img_1">https://cdn.wccftech.com/wp-content/uploads/2018/11/FFXIV_SHADOWBRINGERS_logo_EN-2060x1159.png</string>
+    <string name = "game_5_img_2">https://play4.uk/images/games/8960/final-fantasy-xiv-shadowbringers-collectors-edition-has-revealed-1573-770.jpg</string>
+    <string name = "game_5_img_3">https://i.ytimg.com/vi/HPzfqdXivxE/maxresdefault.jpg</string>
+    <string name = "game_5_img_4">https://gematsu.com/wp-content/uploads/2019/05/FFXIV-Shadowbringers_05-23-19.jpg</string>
+    <string name = "game_5_img_5">https://www.pcgamesn.com/wp-content/uploads/2019/04/FFXIV_Tsukuyomi_2-900x506.jpg</string>
+
+    <string name = "game_6_img_1">https://hb.imgix.net/ed7fd04016922b01ae7c0fd3a8eb2719c3152c72.jpg?auto=compress,format&amp;fit=crop&amp;h=353&amp;w=616&amp;s=4b27683de483863229598dcfbb455b22</string>
+    <string name = "game_6_img_2">https://cdn.vox-cdn.com/thumbor/cWcISn9LAgykycqGMvaKipBgWNI=/0x0:1920x1080/1200x800/filters:focal(807x387:1113x693)/cdn.vox-cdn.com/uploads/chorus_image/image/65246206/BL3_Proving_Grounds_02.0.png</string>
+    <string name = "game_6_img_3">https://o.aolcdn.com/images/dims?quality=85&amp;image_uri=https%3A%2F%2Fo.aolcdn.com%2Fimages%2Fdims%3Fcrop%3D3840%252C2160%252C0%252C0%26quality%3D85%26format%3Djpg%26resize%3D1600%252C900%26image_uri%3Dhttps%253A%252F%252Fs.yimg.com%252Fos%252Fcreatr-uploaded-images%252F2019-06%252F85bcd610-8d31-11e9-bddd-547313338e77%26client%3Da1acac3e1b3290917d92%26signature%3Dd42897107deef8fbbe1744d434cdd8ca712cbfc0&amp;client=amp-blogside-v2&amp;signature=98b29b9bd1b628070dcfc0f950a64e5aa2222deb</string>
+    <string name = "game_6_img_4">https://specials-images.forbesimg.com/imageserve/5dd6e704e0af7b0006b1f078/960x0.jpg?fit=scale</string>
+    <string name = "game_6_img_5">https://gamespot1.cbsistatic.com/uploads/original/1587/15875866/3581548-gameplay%20copy%2001.00_00_13_30.still005.jpg</string>
+
+    <string name = "game_7_img_1">https://images.gog.com/60c724a052275a049d857d53957dc38e9347742f52372bb956d992b43efa8fb5_product_card_v2_mobile_slider_639.jpg</string>
+    <string name = "game_7_img_2">https://cdn.pocket-lint.com/r/s/970x/assets/images/133845-games-review-the-witcher-3-wild-hunt-review-image1-07yik9ul5s.jpg</string>
+    <string name = "game_7_img_3">https://cdn.mos.cms.futurecdn.net/WhL5rqVMXebtAWDyjbYtSJ-480-80.jpg</string>
+    <string name = "game_7_img_4">https://steamcdn-a.akamaihd.net/steam/apps/378648/ss_1c2bd33b403f8fde95095909c9db883f39676b26.1920x1080.jpg?t=1548249255</string>
+    <string name = "game_7_img_5">https://cache.escapistmagazine.com/2019/06/19171216/Witcher-3-thumbs-up.jpg</string>
+
+    <string name = "game_8_img_1">https://hb.imgix.net/18cce3b172fb6133a5e2aea7a176bf7a1dce9a63.png?auto=compress,format&amp;fit=crop&amp;h=353&amp;w=616&amp;s=2f9cc94ac7d045555cde27cfd6153259</string>
+    <string name = "game_8_img_2">https://i.ytimg.com/vi/cC3NHzm9cCg/maxresdefault.jpg</string>
+    <string name = "game_8_img_3">https://i.ytimg.com/vi/kCcuZmkwOeI/maxresdefault.jpg</string>
+    <string name = "game_8_img_4">https://img.youtube.com/vi/wjVVDXap-0E/0.jpg</string>
+    <string name = "game_8_img_5">https://crack44.com/wp-content/uploads/2017/11/Tom-Clancy%E2%80%99s-Rainbow-Six-Siege-free-download.jpg</string>
+
+    <string name = "game_9_img_1">https://steamcdn-a.akamaihd.net/steam/apps/814380/header.jpg?t=1558657225</string>
+    <string name = "game_9_img_2">https://image.businessinsider.com/5c951ced16c958189c5c3b4c?width=1100&amp;format=jpeg&amp;auto=webp</string>
+    <string name = "game_9_img_3">https://cdn.vox-cdn.com/thumbor/jaUgfoomfWxAhlh2tLdqJWX4jWc=/0x0:1920x1080/1200x800/filters:focal(807x387:1113x693)/cdn.vox-cdn.com/uploads/chorus_image/image/63265862/Sekiro_22.0.jpg</string>
+    <string name = "game_9_img_4">https://cache.escapistmagazine.com/2019/07/sek.jpg</string>
+    <string name = "game_9_img_5">https://www.gamepur.com/files/images/2019-03/sekiro-24-1534764186.jpg</string>
+
+    <string name = "game_10_img_1">https://steamcdn-a.akamaihd.net/steam/apps/464060/header.jpg?t=1548967357</string>
+    <string name = "game_10_img_2">https://cdn.arstechnica.net/wp-content/uploads/2017/09/Ruiner-4.jpg</string>
+    <string name = "game_10_img_3">https://guides.gamepressure.com/ruiner/gfx/word/449121309.jpg</string>
+    <string name = "game_10_img_4">https://cdn.mos.cms.futurecdn.net/KHiwyHh9AFiSnXdRVmmDeT.jpg</string>
+    <string name = "game_10_img_5">https://cdn.vox-cdn.com/thumbor/FUHrj4mDbibDokpUHd8YZ49W4Dc=/0x0:1920x1080/1200x675/filters:focal(807x387:1113x693)/cdn.vox-cdn.com/uploads/chorus_image/image/56916369/ruiner5.0.jpg</string>
 </resources>
