@@ -2,6 +2,7 @@ package com.example.reviewer.RoomDb.Models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 
@@ -19,6 +20,16 @@ public class Game {
 
     @ColumnInfo(name = "images")
     private String[] image_urls = new String[5];
+
+    public Game(){}
+
+    @Ignore
+    public Game(int game_id, String name, String description, String[] image_urls) {
+        this.game_id = game_id;
+        this.name = name;
+        this.description = description;
+        this.image_urls = image_urls;
+    }
 
     public int getGame_id() {
         return game_id;

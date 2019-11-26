@@ -81,11 +81,21 @@
             android:layout_marginStart="16dp"
             android:text="VIEW LIST" />
 
+        <Button
+            android:id="@+id/populate_db_button"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:text="Populate Db"
+            android:layout_below="@+id/view_list_button"/>
+
         <TextView
             android:id="@+id/game_list_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/view_list_button"
+            android:layout_below="@+id/populate_db_button"
             android:layout_centerHorizontal="true"
             android:text=""/>
 

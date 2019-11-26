@@ -28,6 +28,7 @@ public class ManageUserGamesActivity extends AppCompatActivity {
     private Button viewAllGamesBtn;
     private Button deleteAllBtn;
     private Button viewListBtn;
+    private Button populateDbBtn;
     private TextView allGameText;
     private EditText gameName;
     private EditText gameDesc;
@@ -42,6 +43,7 @@ public class ManageUserGamesActivity extends AppCompatActivity {
         viewAllGamesBtn = findViewById(R.id.view_all_games_button);
         deleteAllBtn = findViewById(R.id.delete_all_games_button);
         viewListBtn = findViewById(R.id.view_list_button);
+        populateDbBtn = findViewById(R.id.populate_db_button);
 
         gameName = findViewById(R.id.edit_game_name);
         gameDesc = findViewById(R.id.edit_game_description);
@@ -56,6 +58,118 @@ public class ManageUserGamesActivity extends AppCompatActivity {
                 .allowMainThreadQueries()
                 .build();
 
+        populateDbBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Random rand = new Random();
+                int gameId_1 = rand.nextInt(100000000),
+                        gameId_2 = rand.nextInt(100000000),
+                        gameId_3 = rand.nextInt(100000000),
+                        gameId_4 = rand.nextInt(100000000),
+                        gameId_5 = rand.nextInt(100000000),
+                        gameId_6 = rand.nextInt(100000000),
+                        gameId_7 = rand.nextInt(100000000),
+                        gameId_8 = rand.nextInt(100000000),
+                        gameId_9 = rand.nextInt(100000000),
+                        gameId_10 = rand.nextInt(100000000);
+
+                String name1 = getResources().getString(R.string.test_game_name_1),
+                        name2 = getResources().getString(R.string.test_game_name_2),
+                        name3 = getResources().getString(R.string.test_game_name_3),
+                        name4 = getResources().getString(R.string.test_game_name_4),
+                        name5 = getResources().getString(R.string.test_game_name_5),
+                        name6 = getResources().getString(R.string.test_game_name_6),
+                        name7 = getResources().getString(R.string.test_game_name_7),
+                        name8 = getResources().getString(R.string.test_game_name_8),
+                        name9 = getResources().getString(R.string.test_game_name_9),
+                        name10 = getResources().getString(R.string.test_game_name_10);
+
+                String desc1 = getResources().getString(R.string.test_game_desc_1),
+                        desc2 = getResources().getString(R.string.test_game_desc_2),
+                        desc3 = getResources().getString(R.string.test_game_desc_3),
+                        desc4 = getResources().getString(R.string.test_game_desc_4),
+                        desc5 = getResources().getString(R.string.test_game_desc_5),
+                        desc6 = getResources().getString(R.string.test_game_desc_6),
+                        desc7 = getResources().getString(R.string.test_game_desc_7),
+                        desc8 = getResources().getString(R.string.test_game_desc_8),
+                        desc9 = getResources().getString(R.string.test_game_desc_9),
+                        desc10 = getResources().getString(R.string.test_game_desc_10);
+
+                String[] imgs1 = {getResources().getString(R.string.game_1_img_1),
+                        getResources().getString(R.string.game_1_img_2),
+                        getResources().getString(R.string.game_1_img_3),
+                        getResources().getString(R.string.game_1_img_4),
+                        getResources().getString(R.string.game_1_img_5)};
+                String[] imgs2 = {getResources().getString(R.string.game_2_img_1),
+                        getResources().getString(R.string.game_2_img_2),
+                        getResources().getString(R.string.game_2_img_3),
+                        getResources().getString(R.string.game_2_img_4),
+                        getResources().getString(R.string.game_2_img_5)};
+                String[] imgs3 = {getResources().getString(R.string.game_3_img_1),
+                        getResources().getString(R.string.game_3_img_2),
+                        getResources().getString(R.string.game_3_img_3),
+                        getResources().getString(R.string.game_3_img_4),
+                        getResources().getString(R.string.game_3_img_5)};
+                String[] imgs4 = {getResources().getString(R.string.game_4_img_1),
+                        getResources().getString(R.string.game_4_img_2),
+                        getResources().getString(R.string.game_4_img_3),
+                        getResources().getString(R.string.game_4_img_4),
+                        getResources().getString(R.string.game_4_img_5)};
+                String[] imgs5 = {getResources().getString(R.string.game_5_img_1),
+                        getResources().getString(R.string.game_5_img_2),
+                        getResources().getString(R.string.game_5_img_3),
+                        getResources().getString(R.string.game_5_img_4),
+                        getResources().getString(R.string.game_5_img_5)};
+                String[] imgs6 = {getResources().getString(R.string.game_6_img_1),
+                        getResources().getString(R.string.game_6_img_2),
+                        getResources().getString(R.string.game_6_img_3),
+                        getResources().getString(R.string.game_6_img_4),
+                        getResources().getString(R.string.game_6_img_5)};
+                String[] imgs7 = {getResources().getString(R.string.game_7_img_1),
+                        getResources().getString(R.string.game_7_img_2),
+                        getResources().getString(R.string.game_7_img_3),
+                        getResources().getString(R.string.game_7_img_4),
+                        getResources().getString(R.string.game_7_img_5)};
+                String[] imgs8 = {getResources().getString(R.string.game_8_img_1),
+                        getResources().getString(R.string.game_8_img_2),
+                        getResources().getString(R.string.game_8_img_3),
+                        getResources().getString(R.string.game_8_img_4),
+                        getResources().getString(R.string.game_8_img_5)};
+                String[] imgs9 = {getResources().getString(R.string.game_9_img_1),
+                        getResources().getString(R.string.game_9_img_2),
+                        getResources().getString(R.string.game_9_img_3),
+                        getResources().getString(R.string.game_9_img_4),
+                        getResources().getString(R.string.game_9_img_5)};
+                String[] imgs10 = {getResources().getString(R.string.game_10_img_1),
+                        getResources().getString(R.string.game_10_img_2),
+                        getResources().getString(R.string.game_10_img_3),
+                        getResources().getString(R.string.game_10_img_4),
+                        getResources().getString(R.string.game_10_img_5)};
+
+                Game game_1 = new Game(gameId_1, name1, desc1, imgs1);
+                Game game_2 = new Game(gameId_2, name2, desc2, imgs2);
+                Game game_3 = new Game(gameId_3, name3, desc3, imgs3);
+                Game game_4 = new Game(gameId_4, name4, desc4, imgs4);
+                Game game_5 = new Game(gameId_5, name5, desc5, imgs5);
+                Game game_6 = new Game(gameId_6, name6, desc6, imgs6);
+                Game game_7 = new Game(gameId_7, name7, desc7, imgs7);
+                Game game_8 = new Game(gameId_8, name8, desc8, imgs8);
+                Game game_9 = new Game(gameId_9, name9, desc9, imgs9);
+                Game game_10 = new Game(gameId_10, name10, desc10, imgs10);
+
+                gameDb.gameDao().addGame(game_1);
+                gameDb.gameDao().addGame(game_2);
+                gameDb.gameDao().addGame(game_3);
+                gameDb.gameDao().addGame(game_4);
+                gameDb.gameDao().addGame(game_5);
+                gameDb.gameDao().addGame(game_6);
+                gameDb.gameDao().addGame(game_7);
+                gameDb.gameDao().addGame(game_8);
+                gameDb.gameDao().addGame(game_9);
+                gameDb.gameDao().addGame(game_10);
+            }
+        });
+
         addGameBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,11 +182,7 @@ public class ManageUserGamesActivity extends AppCompatActivity {
                 String urlsInput = gameImgs.getText().toString();
                 String[] urls = urlsInput.split(",");
 
-                Game game = new Game();
-                game.setGame_id(gameId);
-                game.setName(name);
-                game.setDescription(desc);
-                game.setImage_urls(urls);
+                Game game = new Game(gameId, name, desc, urls);
 
                 List<Game> currentGames = gameDb.gameDao().getAllGames();
                 boolean exists = false;
