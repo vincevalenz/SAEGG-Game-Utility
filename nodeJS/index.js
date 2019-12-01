@@ -7,7 +7,8 @@ var bodyParser = require('body-parser');
 
 // Connect to mysql
 var con = mysql.createConnection({
-  host:'localhost',
+  host:'46.101.176.12',
+  // bigchonk.com
   user:'root',
   password:'',
   database:'review_database'
@@ -248,7 +249,7 @@ app.get('/getGameReviews/',(req,res,next)=>{
 
 app.get('/getSpecificGames/',(req,res,next)=>{
   var post_data = req.body;
-  var gameId[post_data.game_id.length()] = post_data.game_id;
+  var gameId = post_data.game_id;
 
   var resultArray = new Array(gameId.length());
 

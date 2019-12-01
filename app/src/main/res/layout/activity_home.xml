@@ -31,5 +31,13 @@
         android:id="@+id/game_info_page_button"
         android:text="@string/game_info_page_btn_text"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:id="@+id/review_game_button"
+        android:text="@string/review_button"/>
+
 
 </LinearLayout>

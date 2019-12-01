@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class HomeActivity extends AppCompatActivity {
 
-    Button rec_page_button, usr_profile_button, game_info_button;
+    Button rec_page_button, usr_profile_button, game_info_button, rev_game_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +19,7 @@ public class HomeActivity extends AppCompatActivity {
         rec_page_button = (Button)findViewById(R.id.rec_page_button);
         usr_profile_button = findViewById(R.id.user_profile_page_button);
         game_info_button = findViewById(R.id.game_info_page_button);
+        rev_game_button = findViewById(R.id.review_game_button);
 
         rec_page_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +42,12 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        rev_game_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openReviewPage();
+            }
+        });
     }
 
     public void openRecPage() {
@@ -58,6 +65,10 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openReviewPage() {
+        Intent intent = new Intent(this, ReviewActivity.class);
+        startActivity(intent);
+    }
     // ... more navigation
 
 
