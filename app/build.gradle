@@ -59,4 +59,8 @@ dependencies {
 
     //Recycler View
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    // Convert JSON String to Object
+    implementation 'dev.dworks.libs:volleyplus:0.1.4'
+    implementation 'com.google.code.gson:gson:2.8.2'
 }

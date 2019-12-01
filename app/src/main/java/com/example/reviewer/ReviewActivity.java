@@ -130,19 +130,8 @@ public class ReviewActivity extends AppCompatActivity implements View.OnClickLis
     public void applyTexts(int gameID, String email, String password, int rating, String review) {
         // set params
         if(gameID != 0 && email != null && password != null && rating != 0 && review != null) {
-            postReview(gameID, email, password, rating, review);
+
         }
     }
 
-    public void postReview(int gameID, String email, String password, int rating, String review) {
-        compositeDisposable.add(myAPI.postReview(gameID, email, password, rating, review)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<String>() {
-                    @Override
-                    public void accept(String s) throws Exception {
-                        Toast.makeText(ReviewActivity.this, "" + s, Toast.LENGTH_SHORT).show();
-                    }
-                }));
-    }
 }
