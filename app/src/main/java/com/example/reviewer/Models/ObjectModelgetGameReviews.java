@@ -20,9 +20,7 @@ public class ObjectModelgetGameReviews {
 
     public String getUnique_id() { return unique_id; }
 
-    public String getUser_name(){
-        return name;
-    }
+    public String getUser_name(){ return name; }
 
     public int getReview_rating() { return review_rating; }
 

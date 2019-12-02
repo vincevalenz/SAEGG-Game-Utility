@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.reviewer.Models.ObjectModelgetSelfInfo;
 import com.example.reviewer.Retrofit.INodeJS;
 import com.example.reviewer.Retrofit.RetrofitClient;
 import com.example.reviewer.Models.ObjectModelgetGameInfo;
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
     String username_register, password_register, email_register;
 
     Button debug_button;
-    TextView debug_text;
 
     @Override
     protected void onStop() {
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                 int page = 1;
 
                 //Testing function:
-                getGameReviews(amount, page, game_id);
+                getSelfInfo(email, password);
 
             }
         });
@@ -135,6 +135,22 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
     public void openHomeActivity() {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
+    }
+
+    private void getSelfInfo(String email, String password){
+        compositeDisposable.add(myAPI.getSelfInfo(email, password)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        Log.d("TESTING S VALUE", s);
+                        Gson gson = new Gson();
+                        Type listType = new TypeToken<List<ObjectModelgetSelfInfo>>(){}.getType();
+                        List<ObjectModelgetSelfInfo> postsSelf = gson.fromJson(s, listType);
+                        Log.d("Please God work", postsSelf.toString());
+                    }
+                }));
     }
 
     private void getGameReviews(int amount, int page, int game_id){
