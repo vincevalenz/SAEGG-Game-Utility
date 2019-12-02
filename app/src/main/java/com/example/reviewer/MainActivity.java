@@ -126,7 +126,6 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
 
                 //Testing function:
                 getSelfInfo(email, password);
-
             }
         });
 
