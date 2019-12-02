@@ -51,4 +51,9 @@ public interface INodeJS {
                                       @Field("page") int page,
                                       @Field("game_id") int game_id);
 
+    @POST("getSelfInfo")
+    @FormUrlEncoded
+    Observable<String> getSelfInfo(@Field("email") String email,
+                                   @Field("password") String password);
+
 }
