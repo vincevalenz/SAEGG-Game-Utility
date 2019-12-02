@@ -71,8 +71,7 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                loginUser(edit_email.getText().toString(),edit_password.getText().toString());
-                openHomeActivity();
+                loginUser(edit_email.getText().toString(),edit_password.getText().toString());
             }
         });
 
@@ -111,13 +110,12 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
         .subscribe(new Consumer<String>() {
             @Override
             public void accept(String s) throws Exception {
-//                if(s.contains("encrypted_password")){
-//                    Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(MainActivity.this, "Login Failure"+s, Toast.LENGTH_SHORT).show();
-//                }
-                Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
-                openHomeActivity();
+                if(s.contains("encrypted_password")){
+                    Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+                    openHomeActivity();
+                } else {
+                    Toast.makeText(MainActivity.this, "Login Failure"+s, Toast.LENGTH_SHORT).show();
+                }
             }
         }));
     }
