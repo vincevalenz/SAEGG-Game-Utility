@@ -4,13 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserProfileActivity">
+    android:orientation="vertical"
+    tools:context=".UserProfile.UserProfileActivity">
 
     <TextView
         android:id="@+id/placeholder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="USER PROFILE PAGE"/>
+        android:text="PULL USERNAME HERE"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mySavedGames"
+        android:text="My Games"/>
+
+    <Button
+        android:id="@+id/myReviews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Reviews" />
 
 </LinearLayout>
