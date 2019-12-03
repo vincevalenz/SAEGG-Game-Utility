@@ -48,9 +48,6 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
 
     Button debug_button;
 
-    private AppDatabase userDb;
-    private User user = new User();
-
     @Override
     protected void onStop() {
         compositeDisposable.clear();
@@ -60,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
     @Override
     protected void onDestroy() {
         compositeDisposable.clear();
-        userDb.userDao().deleteAll();
         super.onDestroy();
     }
 
@@ -298,22 +294,22 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                         Gson gson = new Gson();
                         Type listType = new TypeToken<List<ObjectModelgetSelfInfo>>(){}.getType();
                         List<ObjectModelgetSelfInfo> postsSelf = gson.fromJson(s, listType);
-                        user = new User(0,
+                        AppDatabase userDb;
+                        User user = new User(0,
                                         email,
                                         password,
                                         postsSelf.get(0).getName(),
                                         postsSelf.get(0).getUnique_id());
+                        userDb = Room.databaseBuilder(getApplicationContext(),
+                                AppDatabase.class,
+                                "User")
+                                .allowMainThreadQueries()
+                                .build();
+                        userDb.userDao().addUserInfo(user);
 
                         Log.d("Please God work", postsSelf.get(0).getName());
                     }
                 }));
-       user.setEmail(email);
-       user.setPassword(password);
-       userDb = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class,
-                "User")
-                .allowMainThreadQueries()
-                .build();
-       userDb.userDao().addUserInfo(user);
+
     }
 }

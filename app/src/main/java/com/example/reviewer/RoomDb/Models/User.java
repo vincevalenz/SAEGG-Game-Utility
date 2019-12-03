@@ -25,6 +25,7 @@ public class User {
 
     public User(){}
 
+    @Ignore
     public User(int user_id, String email, String password, String name, String uid) {
         this.user_id = user_id;
         this.email = email;

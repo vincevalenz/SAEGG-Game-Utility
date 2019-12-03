@@ -51,17 +51,6 @@ public class ReviewActivity extends AppCompatActivity implements View.OnClickLis
 
     private AppDatabase userDb;
 
-    @Override
-    protected void onStop() {
-        compositeDisposable.clear();
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        compositeDisposable.clear();
-        super.onDestroy();
-    }
 
     @Override
     protected void onStop() {
