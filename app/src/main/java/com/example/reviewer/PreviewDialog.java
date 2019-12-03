@@ -68,7 +68,7 @@ public class PreviewDialog extends AppCompatDialogFragment {
 
         gameTitle.setText(getArguments().getString("gameTitle"));
         reviewBody.setText(getArguments().getString("reviewBody"));
-        gameRating.setText(String.format(Locale.ENGLISH, "%d", getArguments().getInt("gameRating")) + " Stars");
+        gameRating.setText(String.format(Locale.ENGLISH, "%d", getArguments().getInt("gameRating")));
 
         return builder.create();
     }

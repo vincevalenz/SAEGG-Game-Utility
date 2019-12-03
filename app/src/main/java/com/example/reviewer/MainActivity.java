@@ -48,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
 
     Button debug_button;
 
+    AppDatabase userDb;
+    User user;
+
     @Override
     protected void onStop() {
         compositeDisposable.clear();
@@ -90,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //loadUserInfoToDb(edit_email.getText().toString(), edit_password.getText().toString());
+                loadUserInfoToDb(edit_email.getText().toString(), edit_password.getText().toString());
                 loginUser(edit_email.getText().toString(),edit_password.getText().toString());
             }
         });
@@ -283,7 +286,7 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                 }));
     }
 
-    private void loadUserInfoToDb(final String email, final String password) {
+    private void loadUserInfoToDb(String email, String password) {
        compositeDisposable.add(myAPI.getSelfInfo(email, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -294,15 +297,16 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                         Gson gson = new Gson();
                         Type listType = new TypeToken<List<ObjectModelgetSelfInfo>>(){}.getType();
                         List<ObjectModelgetSelfInfo> postsSelf = gson.fromJson(s, listType);
-                        AppDatabase userDb;
-                        User user = new User(0,
-                                        email,
-                                        password,
+
+
+                         user = new User(0,
+                                        edit_email.getText().toString(),
+                                        edit_password.getText().toString(),
                                         postsSelf.get(0).getName(),
                                         postsSelf.get(0).getUnique_id());
                         userDb = Room.databaseBuilder(getApplicationContext(),
                                 AppDatabase.class,
-                                "User")
+                                "user")
                                 .allowMainThreadQueries()
                                 .build();
                         userDb.userDao().addUserInfo(user);
