@@ -1,9 +1,11 @@
 package com.example.reviewer;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -12,8 +14,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.reviewer.Models.ObjectModelgetSelfInfo;
 import com.example.reviewer.Retrofit.INodeJS;
 import com.example.reviewer.Retrofit.RetrofitClient;
+import com.example.reviewer.RoomDb.AppDatabase;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -21,6 +27,8 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
+import java.lang.reflect.Type;
+import java.util.List;
 import java.util.Locale;
 
 public class ReviewActivity extends AppCompatActivity implements View.OnClickListener, PreviewDialog.PreviewDialogListener {
@@ -40,6 +48,32 @@ public class ReviewActivity extends AppCompatActivity implements View.OnClickLis
                      ratingDisplay;
     private EditText reviewBody;
     private int rating = 0;
+
+    private AppDatabase userDb;
+
+    @Override
+    protected void onStop() {
+        compositeDisposable.clear();
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        compositeDisposable.clear();
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onStop() {
+        compositeDisposable.clear();
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        compositeDisposable.clear();
+        super.onDestroy();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +100,15 @@ public class ReviewActivity extends AppCompatActivity implements View.OnClickLis
         fourStar.setOnClickListener(this);
         fiveStar.setOnClickListener(this);
 
+        userDb = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class,
+                "User")
+                .allowMainThreadQueries()
+                .build();
+
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(ReviewActivity.this, HomeActivity.class);
-                //startActivity(intent);
                 finish();
             }
         });
@@ -78,12 +116,18 @@ public class ReviewActivity extends AppCompatActivity implements View.OnClickLis
         postReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (rating != 0)
-                    openPreviewDialog(gameTitle.getText().toString(), reviewBody.getText().toString(), rating);
-                else {
+                if (rating == 0) {
                     Toast toast = Toast.makeText(ReviewActivity.this, "Please rate game", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
+                }
+                else if (reviewBody.getText().toString().isEmpty()) {
+                    Toast toast = Toast.makeText(ReviewActivity.this, "Please write a review", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                }
+                else {
+                    openPreviewDialog(gameTitle.getText().toString(), reviewBody.getText().toString(), rating);
                 }
             }
         });
@@ -127,10 +171,23 @@ public class ReviewActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     @Override
-    public void applyTexts(int gameID, String email, String password, int rating, String review) {
-        // set params
-        if(gameID != 0 && email != null && password != null && rating != 0 && review != null) {
+    public void applyTexts(int gameID, int rating, String review) {
+        if(gameID != 0 && rating != 0 && review != null) {
+            compositeDisposable.add(myAPI.postReview(gameID,
+                                    userDb.userDao().getUserEmail(),
+                                    userDb.userDao().getUserPass(),
+                                    rating,
+                                    review,
+                                    userDb.userDao().getUserUid(),
+                                    userDb.userDao().getUserName())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<String>() {
+                        @Override
+                        public void accept(String s) throws Exception {
 
+                        }
+                    }));
         }
     }
 

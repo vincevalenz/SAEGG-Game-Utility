@@ -53,13 +53,12 @@ public class PreviewDialog extends AppCompatDialogFragment {
                 .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        int game = Integer.parseInt(gameTitle.getText().toString()),        // TBD where from
-                            rating = Integer.parseInt(gameRating.getText().toString());
-                        String review = reviewBody.getText().toString();
-                             //   email = ,                                                // TBD where from
-                             //   password = ;                                              // TBD where from
+                        int     game = 1,        // TBD where from
+                                rating = Integer.parseInt(gameRating.getText().toString());
 
-                        //listener.applyTexts(game, email, password, rating, review);
+                        String  review = reviewBody.getText().toString();
+
+                        listener.applyTexts(game, rating, review);
                     }
                 });
 
@@ -86,7 +85,7 @@ public class PreviewDialog extends AppCompatDialogFragment {
     }
 
     public interface PreviewDialogListener {
-        void applyTexts(int gameID, String email, String password, int rating, String review);
+        void applyTexts(int gameID, int rating, String review);
     }
 
 }

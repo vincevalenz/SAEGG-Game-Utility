@@ -1,6 +1,7 @@
 package com.example.reviewer;
 
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import com.example.reviewer.Models.ObjectModelgetSelfInfo;
 import com.example.reviewer.Retrofit.INodeJS;
@@ -19,6 +21,8 @@ import com.example.reviewer.Models.ObjectModelgetGameReviews;
 import com.example.reviewer.Models.ObjectModelgetGamesList;
 import com.example.reviewer.Models.ObjectModelgetProfileReview;
 import com.example.reviewer.Models.ObjectModelgetProfileUser;
+import com.example.reviewer.RoomDb.AppDatabase;
+import com.example.reviewer.RoomDb.Models.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -34,15 +38,18 @@ import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity implements RegisterDialog.RegisterDialogListener {
 
-    INodeJS myAPI;
-    CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private INodeJS myAPI;
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-    EditText edit_email,edit_password;
-    Button register_button,login_button;
+    private EditText edit_email,edit_password;
+    private Button register_button,login_button;
 
-    String username_register, password_register, email_register;
+    private String username_register, password_register, email_register;
 
     Button debug_button;
+
+    private AppDatabase userDb;
+    private User user = new User();
 
     @Override
     protected void onStop() {
@@ -53,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
     @Override
     protected void onDestroy() {
         compositeDisposable.clear();
+        userDb.userDao().deleteAll();
         super.onDestroy();
     }
 
@@ -77,15 +85,16 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
         myAPI = retrofit.create(INodeJS.class);
 
         //View
-        login_button = (Button)findViewById(R.id.login_button);
-        register_button = (Button)findViewById(R.id.register_button);
+        login_button = findViewById(R.id.login_button);
+        register_button = findViewById(R.id.register_button);
 
-        edit_email = (EditText)findViewById(R.id.edit_email);
-        edit_password = (EditText)findViewById(R.id.edit_password);
+        edit_email = findViewById(R.id.edit_email);
+        edit_password = findViewById(R.id.edit_password);
 
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loadUserInfoToDb(edit_email.getText().toString(), edit_password.getText().toString());
                 loginUser(edit_email.getText().toString(),edit_password.getText().toString());
             }
         });
@@ -101,10 +110,13 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
         });
 
 
+        // User RoomDb init
+
+
 
 
         //Debug stuff
-        debug_button = (Button)findViewById(R.id.debug_button);
+        debug_button = findViewById(R.id.debug_button);
 
 
         debug_button.setOnClickListener(new View.OnClickListener() {
@@ -126,7 +138,6 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
 
                 //Testing function:
                 getSelfInfo(email, password);
-
             }
         });
 
@@ -148,9 +159,10 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                         Gson gson = new Gson();
                         Type listType = new TypeToken<List<ObjectModelgetSelfInfo>>(){}.getType();
                         List<ObjectModelgetSelfInfo> postsSelf = gson.fromJson(s, listType);
-                        Log.d("Please God work", postsSelf.toString());
+                        Log.d("Please God work", postsSelf.get(0).getName());
                     }
                 }));
+
     }
 
     private void getGameReviews(int amount, int page, int game_id){
@@ -275,5 +287,33 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                 }));
     }
 
+    private void loadUserInfoToDb(final String email, final String password) {
+       compositeDisposable.add(myAPI.getSelfInfo(email, password)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        Log.d("TESTING S VALUE", s);
+                        Gson gson = new Gson();
+                        Type listType = new TypeToken<List<ObjectModelgetSelfInfo>>(){}.getType();
+                        List<ObjectModelgetSelfInfo> postsSelf = gson.fromJson(s, listType);
+                        user = new User(0,
+                                        email,
+                                        password,
+                                        postsSelf.get(0).getName(),
+                                        postsSelf.get(0).getUnique_id());
 
+                        Log.d("Please God work", postsSelf.get(0).getName());
+                    }
+                }));
+       user.setEmail(email);
+       user.setPassword(password);
+       userDb = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class,
+                "User")
+                .allowMainThreadQueries()
+                .build();
+       userDb.userDao().addUserInfo(user);
+    }
 }
