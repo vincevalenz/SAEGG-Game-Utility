@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadUserInfoToDb(edit_email.getText().toString(), edit_password.getText().toString());
+                //loadUserInfoToDb(edit_email.getText().toString(), edit_password.getText().toString());
                 loginUser(edit_email.getText().toString(),edit_password.getText().toString());
             }
         });
