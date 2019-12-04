@@ -99,21 +99,11 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
             }
         });
 
-
-        // User RoomDb init
-
-
-
-
         //Debug stuff
         debug_button = findViewById(R.id.debug_button);
-
-
         debug_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 //Dummy variables
                 String unique_id = "f881a6cc-6ac7-49bd-9bcc-e7dc8be5c9e4";
                 String email = "asdf@asdf";
@@ -127,8 +117,12 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                 int page = 1;
 
                 //Testing function:
+                getGamesList(1,1);
             }
         });
+
+        getGameInfo(1);
+        getGamesList(4,1);
 
     }
 

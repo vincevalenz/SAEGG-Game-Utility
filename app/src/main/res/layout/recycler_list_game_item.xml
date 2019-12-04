@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:background="@android:color/holo_purple"
+        android:background="@android:color/background_light"
         android:padding="4dp">
 
         <ImageView
@@ -27,6 +27,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Game Name Placeholder"
+            android:textSize="18sp"
+            android:textAppearance="@android:color/primary_text_dark"
             android:layout_centerInParent="true"
             android:layout_toRightOf="@+id/game_picture"
             android:layout_toEndOf="@+id/game_picture"

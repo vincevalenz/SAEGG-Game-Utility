@@ -31,26 +31,30 @@ public class GameInfoActivity extends AppCompatActivity{
 
         Bundle bundle = getIntent().getExtras();
         String gameToLoad = bundle.getString("game_name");
-
-        gameDb = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class,
-                "Game")
-                .allowMainThreadQueries()
-                .build();
-
-        Game game;
-        game = gameDb.gameDao().getGame(gameToLoad);
+        int location = bundle.getInt("location");
 
         carouselView = findViewById(R.id.game_screenshots);
         gameTitle = findViewById(R.id.game_title);
         gameDesc = findViewById(R.id.game_summary);
 
-        images = game.getImage_urls();
-        gameTitle.setText(game.getName());
-        gameDesc.setText(game.getDescription());
+        if(location == 0) { // GameInfoActivity was started with a game from local database
+            gameDb = Room.databaseBuilder(getApplicationContext(),
+                    AppDatabase.class,
+                    "Game")
+                    .allowMainThreadQueries()
+                    .build();
 
-        carouselView.setPageCount(images.length);
-        carouselView.setImageListener(imageListener);
+            Game game;
+            game = gameDb.gameDao().getGame(gameToLoad);
+
+            images = game.getImage_urls();
+            gameTitle.setText(game.getName());
+            gameDesc.setText(game.getDescription());
+
+            carouselView.setPageCount(images.length);
+            carouselView.setImageListener(imageListener);
+        }
+
     }
 
     ImageListener imageListener = new ImageListener() {

@@ -29,7 +29,6 @@ public class ManageUserGamesActivity extends AppCompatActivity {
     private Button deleteAllBtn;
     private Button viewListBtn;
     private Button populateDbBtn;
-    private Button allGamesListBtn;
     private TextView allGameText;
     private EditText gameName;
     private EditText gameDesc;
@@ -45,7 +44,6 @@ public class ManageUserGamesActivity extends AppCompatActivity {
         deleteAllBtn = findViewById(R.id.delete_all_games_button);
         viewListBtn = findViewById(R.id.view_list_button);
         populateDbBtn = findViewById(R.id.populate_db_button);
-        allGamesListBtn = findViewById(R.id.all_games_list_button);
 
         gameName = findViewById(R.id.edit_game_name);
         gameDesc = findViewById(R.id.edit_game_description);
@@ -285,22 +283,10 @@ public class ManageUserGamesActivity extends AppCompatActivity {
                 openGameList();
             }
         });
-
-        allGamesListBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openAllGameList();
-            }
-        });
     }
 
     public void openGameList() {
         Intent intent = new Intent(this, GameListActivity.class);
-        startActivity(intent);
-    }
-
-    public void openAllGameList() {
-        Intent intent = new Intent(this, AllGameListActivity.class);
         startActivity(intent);
     }
 }
