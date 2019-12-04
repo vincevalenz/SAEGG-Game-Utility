@@ -17,9 +17,12 @@ public class GameViewAdapter extends RecyclerView.Adapter<GameViewHolder> {
     private String TAG = "GameViewAdapter";
 
     private List<Game> gameCollection;
+    private final OnRecyclerItemClickListener clickListener;
 
-    public GameViewAdapter(List<Game> collection) {
+
+    public GameViewAdapter(List<Game> collection, OnRecyclerItemClickListener listener) {
         gameCollection = collection;
+        clickListener = listener;
     }
 
     @NonNull
@@ -35,7 +38,7 @@ public class GameViewAdapter extends RecyclerView.Adapter<GameViewHolder> {
     public void onBindViewHolder(@NonNull GameViewHolder gameViewHolder, int position) {
         Log.d(TAG, "onBindViewHolder: " + position);
         Game model = gameCollection.get(position);
-        gameViewHolder.bindView(model);
+        gameViewHolder.bindView(model, clickListener);
     }
 
     @Override

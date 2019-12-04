@@ -6,12 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".GameInfoActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/LinearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical">
+
+        <Button
+            android:id="@+id/info_page_user_profile_button"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:text="USER PROFILE"/>
+
 
         <TextView
             android:id="@+id/game_title"
@@ -19,6 +29,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/game_title_margin"
             android:text="@string/game_title_text_placeholder"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/info_page_user_profile_button"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
 
         <com.synnapps.carouselview.CarouselView
@@ -26,27 +39,35 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_margin="4dp"
-            app:fillColor="#FF0000"
-            app:pageColor="#2B00FF"
+            android:layout_below="@+id/game_title"
+            app:fillColor="#D3D3D3"
+            app:pageColor="#000000"
             app:radius="6dp"
             app:slideInterval="4000"
             app:strokeColor="#FF777777"
             app:strokeWidth="1dp"
-            app:pageTransformer="zoom" />
+            app:pageTransformer="zoom"
+            app:indicatorMarginVertical="1dp"/>
+
+        <Button
+            android:id="@+id/add_game_to_list_button"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/game_screenshots"
+            android:layout_alignParentRight="true"
+            android:drawableLeft="@drawable/ic_save_game"
+            android:text="Save Game"/>
+
 
         <TextView
             android:id="@+id/game_summary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/game_summary_margin"
+            android:layout_below="@id/add_game_to_list_button"
             android:text="@string/game_summary_placeholder" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/test_image"/>
 
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </ScrollView>

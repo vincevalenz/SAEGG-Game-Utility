@@ -13,6 +13,7 @@ import android.widget.Button;
 
 import com.example.reviewer.GameLibrary.GameViewAdapter;
 import com.example.reviewer.GameLibrary.ManageUserGamesActivity;
+import com.example.reviewer.GameLibrary.OnRecyclerItemClickListener;
 import com.example.reviewer.Models.ObjectModelgetGameInfo;
 import com.example.reviewer.Models.ObjectModelgetGamesList;
 import com.example.reviewer.RoomDb.Models.Game;
@@ -108,8 +109,26 @@ public class HomeActivity extends AppCompatActivity {
                 for(int i = 0; i < gameModels.size(); i++) {
                     System.out.println("DEBUG: GameModel[" + i + "] name is: " + gameModels.get(i).getName());
                 }
+                GameViewAdapter gameViewAdapter;
 
-                GameViewAdapter gameViewAdapter = new GameViewAdapter(gameModels);
+                OnRecyclerItemClickListener listener = new OnRecyclerItemClickListener() {
+                    @Override
+                    public void onRecyclerItemClick(Game game) {
+                        System.out.println("GAME PRESSED: " + game.getName());
+                        openGameInfo(game.getGame_id(),
+                                game.getName(),
+                                game.getDescription(),
+                                game.getImage_urls()[0],
+                                game.getImage_urls()[1],
+                                game.getImage_urls()[2],
+                                game.getImage_urls()[3],
+                                game.getImage_urls()[4],
+                                true); // location 1 is remote
+                        return;
+                    }
+                };
+
+                gameViewAdapter = new GameViewAdapter(gameModels, listener);
                 recyclerView.setAdapter(gameViewAdapter);
             }
         });
@@ -117,16 +136,17 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-    private void openGameInfo(String name, String description, String img1, String img2, String img3, String img4, String img5, int location) {
+    private void openGameInfo(int id, String name, String description, String img1, String img2, String img3, String img4, String img5, boolean fromRemote) {
         Intent intent = new Intent(this, GameInfoActivity.class);
+        intent.putExtra("game_id", id);
         intent.putExtra("game_name", name);
-        intent.putExtra("game_desc", name);
-        intent.putExtra("game_img_1", name);
-        intent.putExtra("game_img_2", name);
-        intent.putExtra("game_img_3", name);
-        intent.putExtra("game_img_4", name);
-        intent.putExtra("game_img_5", name);
-        intent.putExtra("location", location);// 0 for local, 1 for remote
+        intent.putExtra("game_desc", description);
+        intent.putExtra("game_img_1", img1);
+        intent.putExtra("game_img_2", img2);
+        intent.putExtra("game_img_3", img3);
+        intent.putExtra("game_img_4", img4);
+        intent.putExtra("game_img_5", img5);
+        intent.putExtra("from_remote", fromRemote);// 0 for local, 1 for remote
         startActivity(intent);
     }
 
