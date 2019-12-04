@@ -8,68 +8,85 @@
     tools:context=".HomeActivity">
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:id="@+id/rec_page_button"
-        android:text="@string/rec_page_btn_text"/>
+        android:id="@+id/load_games_button"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="LOAD GAMES"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:id="@+id/user_profile_page_button"
-        android:text="@string/user_profile_btn_text"/>
+        android:id="@+id/add_loaded_games_button"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="ADD GAMES"/>
+
+    <Button
+        android:id="@+id/display_games_button"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="DISPLAY GAMES"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+    </androidx.recyclerview.widget.RecyclerView>
 
 <!--    <Button-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->
 <!--        android:layout_marginTop="16dp"-->
 <!--        android:layout_marginLeft="16dp"-->
-<!--        android:id="@+id/game_info_page_button"-->
-<!--        android:text="@string/game_info_page_btn_text"/>-->
+<!--        android:id="@+id/rec_page_button"-->
+<!--        android:text="@string/rec_page_btn_text"/>-->
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:id="@+id/review_game_button"
-        android:text="@string/review_button"/>
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginLeft="16dp"-->
+<!--        android:id="@+id/user_profile_page_button"-->
+<!--        android:text="@string/user_profile_btn_text"/>-->
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:id="@+id/admin_add_game_button"
-        android:text="@string/admin_add_game_btn_text"/>
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginLeft="16dp"-->
+<!--        android:id="@+id/review_game_button"-->
+<!--        android:text="@string/review_button"/>-->
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:id="@+id/destiny_2_button"
-        android:text="Destiny 2"/>
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginLeft="16dp"-->
+<!--        android:id="@+id/admin_add_game_button"-->
+<!--        android:text="@string/admin_add_game_btn_text"/>-->
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:id="@+id/runescape_button"
-        android:text="Runescape"/>
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginLeft="16dp"-->
+<!--        android:id="@+id/destiny_2_button"-->
+<!--        android:text="Destiny 2"/>-->
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:id="@+id/death_stranding_button"
-        android:text="Death Stranding"/>
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginLeft="16dp"-->
+<!--        android:id="@+id/runescape_button"-->
+<!--        android:text="Runescape"/>-->
+
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginLeft="16dp"-->
+<!--        android:id="@+id/death_stranding_button"-->
+<!--        android:text="Death Stranding"/>-->
 
 
 </LinearLayout>
