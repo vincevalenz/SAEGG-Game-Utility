@@ -7,18 +7,17 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-import java.util.Locale;
 
 public class PreviewDialog extends AppCompatDialogFragment {
 
     private TextView gameTitle,
-                     reviewBody,
-                     gameRating;
+                     reviewBody;
+    private RatingBar rating;
     private PreviewDialogListener listener;
 
     static PreviewDialog newInstance(String gameTitle, String reviewBody, int rating) {
@@ -53,7 +52,7 @@ public class PreviewDialog extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         int     game = 1,        // TBD where from
-                                rating = Integer.parseInt(gameRating.getText().toString());
+                                rating = getArguments().getInt("gameRating");
 
                         String  review = reviewBody.getText().toString();
 
@@ -63,11 +62,13 @@ public class PreviewDialog extends AppCompatDialogFragment {
 
         gameTitle = view.findViewById(R.id.game_title);
         reviewBody = view.findViewById(R.id.review_text);
-        gameRating = view.findViewById(R.id.game_rating);
+        rating = view.findViewById(R.id.rating_bar);
 
         gameTitle.setText(getArguments().getString("gameTitle"));
         reviewBody.setText(getArguments().getString("reviewBody"));
-        gameRating.setText(String.format(Locale.ENGLISH, "%d", getArguments().getInt("gameRating")));
+        rating.setRating((float)getArguments().getInt("gameRating"));
+        //Drawable drawable = rating.getProgressDrawable();
+        //drawable.setColorFilter(Color.parseColor("#FFC107"), PorterDuff.Mode.SRC_ATOP);
 
         return builder.create();
     }
