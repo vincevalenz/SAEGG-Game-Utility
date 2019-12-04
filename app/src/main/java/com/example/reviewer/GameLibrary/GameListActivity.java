@@ -23,25 +23,25 @@ public class GameListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_list);
 
-        gameDb = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class,
-                "Game")
-                .allowMainThreadQueries()
-                .build();
-
-        recyclerView = findViewById(R.id.recycler_view);
-
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getBaseContext());
-        recyclerView.setLayoutManager(layoutManager);
-
-        List<Game> gameModels = gameDb.gameDao().getAllGames();
-
-        for(int i = 0; i < gameModels.size(); i++) {
-            System.out.println("DEBUG: GameModel[" + i + "] name is: " + gameModels.get(i).getName());
-        }
-
-        GameViewAdapter gameViewAdapter = new GameViewAdapter(gameModels);
-        recyclerView.setAdapter(gameViewAdapter);
+//        gameDb = Room.databaseBuilder(getApplicationContext(),
+//                AppDatabase.class,
+//                "Game")
+//                .allowMainThreadQueries()
+//                .build();
+//
+//        recyclerView = findViewById(R.id.recycler_view);
+//
+//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getBaseContext());
+//        recyclerView.setLayoutManager(layoutManager);
+//
+//        List<Game> gameModels = gameDb.gameDao().getAllGames();
+//
+//        for(int i = 0; i < gameModels.size(); i++) {
+//            System.out.println("DEBUG: GameModel[" + i + "] name is: " + gameModels.get(i).getName());
+//        }
+//
+//        GameViewAdapter gameViewAdapter = new GameViewAdapter(gameModels);
+//        recyclerView.setAdapter(gameViewAdapter);
     }
 
 }

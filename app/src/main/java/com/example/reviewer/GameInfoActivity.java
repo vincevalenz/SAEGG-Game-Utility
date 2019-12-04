@@ -30,14 +30,36 @@ public class GameInfoActivity extends AppCompatActivity{
         setContentView(R.layout.activity_game_info);
 
         Bundle bundle = getIntent().getExtras();
-        String gameToLoad = bundle.getString("game_name");
-        int location = bundle.getInt("location");
+        int id = bundle.getInt("game_id");
+        String name = bundle.getString("game_name");
+        String desc = bundle.getString("game_desc");
+        String img_1 = bundle.getString("game_img_1");
+        String img_2 = bundle.getString("game_img_2");
+        String img_3 = bundle.getString("game_img_3");
+        String img_4 = bundle.getString("game_img_4");
+        String img_5 = bundle.getString("game_img_5");
+        boolean fromRemote = bundle.getBoolean("from_remote");
 
         carouselView = findViewById(R.id.game_screenshots);
         gameTitle = findViewById(R.id.game_title);
         gameDesc = findViewById(R.id.game_summary);
 
-        if(location == 0) { // GameInfoActivity was started with a game from local database
+        if(fromRemote) {
+            images[0] = img_1;
+            images[1] = img_2;
+            images[2] = img_3;
+            images[3] = img_4;
+            images[4] = img_5;
+            Game game = new Game(id, name, desc, images);
+
+            images = game.getImage_urls();
+            gameTitle.setText(game.getName());
+            gameDesc.setText(game.getDescription());
+
+            carouselView.setPageCount(images.length);
+            carouselView.setImageListener(imageListener);
+
+        } else {
             gameDb = Room.databaseBuilder(getApplicationContext(),
                     AppDatabase.class,
                     "Game")
@@ -45,9 +67,11 @@ public class GameInfoActivity extends AppCompatActivity{
                     .build();
 
             Game game;
-            game = gameDb.gameDao().getGame(gameToLoad);
+            game = gameDb.gameDao().getGame(name);
 
-            images = game.getImage_urls();
+            if (images.length != 0) {
+                images = game.getImage_urls();
+            }
             gameTitle.setText(game.getName());
             gameDesc.setText(game.getDescription());
 

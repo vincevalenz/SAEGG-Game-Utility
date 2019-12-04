@@ -22,7 +22,7 @@ public class GameViewHolder extends RecyclerView.ViewHolder {
         gamePicImageView = itemView.findViewById(R.id.game_picture);
     }
 
-    public void bindView(final Game game) {
+    public void bindView(final Game game, final OnRecyclerItemClickListener listener) {
         Glide.with(this.itemView)
                 .load(game.getImage_urls()[0])
 //                .override(500,500)
@@ -34,6 +34,13 @@ public class GameViewHolder extends RecyclerView.ViewHolder {
         System.out.println("DEBUG: name: " + game.getName());
 
         gameNameTextView.setText(game.getName());
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onRecyclerItemClick(game);
+            }
+        });
 
     }
 }
