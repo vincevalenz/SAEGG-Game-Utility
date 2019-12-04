@@ -40,13 +40,14 @@
             android:layout_height="200dp"
             android:layout_margin="4dp"
             android:layout_below="@+id/game_title"
-            app:fillColor="#FF0000"
-            app:pageColor="#2B00FF"
+            app:fillColor="#D3D3D3"
+            app:pageColor="#000000"
             app:radius="6dp"
             app:slideInterval="4000"
             app:strokeColor="#FF777777"
             app:strokeWidth="1dp"
-            app:pageTransformer="zoom" />
+            app:pageTransformer="zoom"
+            app:indicatorMarginVertical="1dp"/>
 
         <Button
             android:id="@+id/add_game_to_list_button"

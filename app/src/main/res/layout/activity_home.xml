@@ -12,14 +12,14 @@
         android:layout_margin="8dp"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:text="LOAD GAMES"/>
+        android:text="SETUP: LOAD"/>
 
     <Button
         android:id="@+id/add_loaded_games_button"
         android:layout_margin="8dp"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:text="ADD GAMES"
+        android:text="SETUP: ADD"
         android:layout_below="@+id/load_games_button"/>
 
     <Button
@@ -27,7 +27,7 @@
         android:layout_margin="8dp"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:text="DISPLAY GAMES"
+        android:text="SETUP: DISPLAY"
         android:layout_below="@+id/add_loaded_games_button"/>
 
     <Button
