@@ -32,9 +32,7 @@ public class ReviewActivity extends AppCompatActivity implements PreviewDialog.P
     INodeJS myAPI;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-    private ImageButton exitButton;
-
-    private Button postReviewButton;
+    private ImageButton exitButton, postReviewButton;
 
     private RatingBar ratingBar;
 
