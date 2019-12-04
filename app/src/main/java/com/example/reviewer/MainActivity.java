@@ -44,12 +44,13 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
     private EditText edit_email,edit_password;
     private Button register_button,login_button;
 
-    private String username_register, password_register, email_register;
+    private String username_register, password_register, email_register, user_entered_email, user_entered_pass;
 
     Button debug_button;
 
     AppDatabase userDb;
-    User user;
+//    User user;
+
 
     @Override
     protected void onStop() {
@@ -93,8 +94,19 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadUserInfoToDb(edit_email.getText().toString(), edit_password.getText().toString());
+                user_entered_email = edit_email.getText().toString();
+                user_entered_pass = edit_password.getText().toString();
+
+                userDb = Room.databaseBuilder(getApplicationContext(),
+                        AppDatabase.class,
+                        "user")
+                        .allowMainThreadQueries()
+                        .build();
+
+                userDb.userDao().deleteAll();
+
                 loginUser(edit_email.getText().toString(),edit_password.getText().toString());
+                loadUserInfoToDb(edit_email.getText().toString(), edit_password.getText().toString());
             }
         });
 
@@ -278,6 +290,9 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                     public void accept(String s) throws Exception {
                         if(s.contains("encrypted_password")){
                             Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+
+
+
                             openHomeActivity();
                         } else {
                             Toast.makeText(MainActivity.this, "Login Failure"+s, Toast.LENGTH_SHORT).show();
@@ -297,23 +312,17 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                         Gson gson = new Gson();
                         Type listType = new TypeToken<List<ObjectModelgetSelfInfo>>(){}.getType();
                         List<ObjectModelgetSelfInfo> postsSelf = gson.fromJson(s, listType);
+                        Log.d("Please God work", postsSelf.get(0).getName());
 
 
-                         user = new User(0,
-                                        edit_email.getText().toString(),
-                                        edit_password.getText().toString(),
+                        User user = new User(0,
+                                        user_entered_email,
+                                        user_entered_pass,
                                         postsSelf.get(0).getName(),
                                         postsSelf.get(0).getUnique_id());
-                        userDb = Room.databaseBuilder(getApplicationContext(),
-                                AppDatabase.class,
-                                "user")
-                                .allowMainThreadQueries()
-                                .build();
-                        userDb.userDao().addUserInfo(user);
 
-                        Log.d("Please God work", postsSelf.get(0).getName());
+                        userDb.userDao().addUserInfo(user);
                     }
                 }));
-
     }
 }

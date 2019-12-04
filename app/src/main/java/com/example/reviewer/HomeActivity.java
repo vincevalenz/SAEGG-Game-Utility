@@ -1,6 +1,7 @@
 package com.example.reviewer;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,12 +9,12 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.reviewer.GameLibrary.ManageUserGamesActivity;
+
 import com.example.reviewer.RoomDb.AppDatabase;
 import com.example.reviewer.UserProfile.UserProfileActivity;
 
 public class HomeActivity extends AppCompatActivity {
-
-    AppDatabase gameDb;
+    AppDatabase appDb;
 
     Button rec_page_button,
             usr_profile_button,
@@ -27,6 +28,19 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        appDb = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class,
+                "user")
+                .allowMainThreadQueries()
+                .build();
+
+       String name = appDb.userDao().getUserName();
+       System.out.println(name);
+       String email = appDb.userDao().getUserEmail();
+        System.out.println(email);
+       String pass = appDb.userDao().getUserPass();
+        System.out.println(pass);
 
         rec_page_button = (Button)findViewById(R.id.rec_page_button);
         usr_profile_button = findViewById(R.id.user_profile_page_button);
@@ -67,21 +81,21 @@ public class HomeActivity extends AppCompatActivity {
         destiny_2_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openGameInfo(gameDb, "Destiny 2");
+                openGameInfo(appDb, "Destiny 2");
             }
         });
 
         runescape_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openGameInfo(gameDb, "Runescape");
+                openGameInfo(appDb, "Runescape");
             }
         });
 
         death_stranding_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openGameInfo(gameDb, "Death Stranding");
+                openGameInfo(appDb, "Death Stranding");
             }
         });
 
@@ -115,6 +129,7 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
     // ... more navigation
+
 
 
 }
