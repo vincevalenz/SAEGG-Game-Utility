@@ -1,17 +1,14 @@
 package com.example.reviewer;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import com.example.reviewer.Models.ObjectModelgetSelfInfo;
 import com.example.reviewer.Retrofit.INodeJS;
@@ -21,8 +18,6 @@ import com.example.reviewer.Models.ObjectModelgetGameReviews;
 import com.example.reviewer.Models.ObjectModelgetGamesList;
 import com.example.reviewer.Models.ObjectModelgetProfileReview;
 import com.example.reviewer.Models.ObjectModelgetProfileUser;
-import com.example.reviewer.RoomDb.AppDatabase;
-import com.example.reviewer.RoomDb.Models.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -44,13 +39,9 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
     private EditText edit_email,edit_password;
     private Button register_button,login_button;
 
-    private String username_register, password_register, email_register, user_entered_email, user_entered_pass;
+    private String username_register, password_register, email_register;
 
     Button debug_button;
-
-    AppDatabase userDb;
-//    User user;
-
 
     @Override
     protected void onStop() {
@@ -95,7 +86,6 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
             @Override
             public void onClick(View v) {
                 loginUser(edit_email.getText().toString(),edit_password.getText().toString());
-                loadUserInfoToDb(edit_email.getText().toString(), edit_password.getText().toString());
             }
         });
 
@@ -137,7 +127,6 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                 int page = 1;
 
                 //Testing function:
-                loadUserInfoToDb("test@test", "password");
             }
         });
 
@@ -284,7 +273,6 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                     public void accept(String s) throws Exception {
                         if(s.contains("encrypted_password")){
                             Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
-
                             openHomeActivity();
                         } else {
                             Toast.makeText(MainActivity.this, "Login Failure"+s, Toast.LENGTH_SHORT).show();
@@ -292,5 +280,4 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                     }
                 }));
     }
-
 }

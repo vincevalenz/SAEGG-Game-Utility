@@ -10,17 +10,12 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.reviewer.GameLibrary.ManageUserGamesActivity;
-<<<<<<< HEAD
-
-import com.example.reviewer.RoomDb.AppDatabase;
-
 import com.example.reviewer.UserProfile.UserProfileActivity;
 import com.example.reviewer.Models.ObjectModelgetSelfInfo;
 import com.example.reviewer.Retrofit.INodeJS;
 import com.example.reviewer.Retrofit.RetrofitClient;
 import com.example.reviewer.RoomDb.AppDatabase;
 
-import com.example.reviewer.RoomDb.Models.Game;
 import com.example.reviewer.RoomDb.Models.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -36,16 +31,14 @@ import retrofit2.Retrofit;
 
 public class HomeActivity extends AppCompatActivity {
 
-
-
     private INodeJS myAPI;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     private String email, password;
 
-    AppDatabase gameDb,
-                userDb;
+    AppDatabase gameDb, userDb;
     User user;
+
     Button rec_page_button,
             usr_profile_button,
             rev_game_button,
@@ -59,26 +52,12 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
-        appDb = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class,
-                "user")
-                .allowMainThreadQueries()
-                .build();
-
-       String name = appDb.userDao().getUserName();
-       System.out.println(name);
-       String email = appDb.userDao().getUserEmail();
-        System.out.println(email);
-       String pass = appDb.userDao().getUserPass();
-        System.out.println(pass);
         Bundle extras = getIntent().getExtras();
         email = extras.getString("email");
         password = extras.getString("password");
 
         Retrofit retrofit = RetrofitClient.getInstance();
         myAPI = retrofit.create(INodeJS.class);
-
 
         rec_page_button = (Button)findViewById(R.id.rec_page_button);
         usr_profile_button = findViewById(R.id.user_profile_page_button);
@@ -120,21 +99,21 @@ public class HomeActivity extends AppCompatActivity {
         destiny_2_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openGameInfo(appDb, "Destiny 2");
+                openGameInfo(gameDb, "Destiny 2");
             }
         });
 
         runescape_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openGameInfo(appDb, "Runescape");
+                openGameInfo(gameDb, "Runescape");
             }
         });
 
         death_stranding_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openGameInfo(appDb, "Death Stranding");
+                openGameInfo(gameDb, "Death Stranding");
             }
         });
 
@@ -200,7 +179,6 @@ public class HomeActivity extends AppCompatActivity {
 
     }
     // ... more navigation
-
 
 
 }
