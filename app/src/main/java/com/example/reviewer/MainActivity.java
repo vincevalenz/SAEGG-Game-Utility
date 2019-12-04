@@ -94,17 +94,6 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                user_entered_email = edit_email.getText().toString();
-                user_entered_pass = edit_password.getText().toString();
-
-                userDb = Room.databaseBuilder(getApplicationContext(),
-                        AppDatabase.class,
-                        "user")
-                        .allowMainThreadQueries()
-                        .build();
-
-                userDb.userDao().deleteAll();
-
                 loginUser(edit_email.getText().toString(),edit_password.getText().toString());
                 loadUserInfoToDb(edit_email.getText().toString(), edit_password.getText().toString());
             }
@@ -148,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                 int page = 1;
 
                 //Testing function:
-                getSelfInfo(email, password);
+                loadUserInfoToDb("test@test", "password");
             }
         });
 
@@ -156,6 +145,11 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
 
     public void openHomeActivity() {
         Intent intent = new Intent(this, HomeActivity.class);
+        Bundle extras = new Bundle();
+        extras.putString("email", edit_email.getText().toString());
+        extras.putString("password", edit_password.getText().toString());
+        intent.putExtras(extras);
+
         startActivity(intent);
     }
 
@@ -291,8 +285,6 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                         if(s.contains("encrypted_password")){
                             Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
 
-
-
                             openHomeActivity();
                         } else {
                             Toast.makeText(MainActivity.this, "Login Failure"+s, Toast.LENGTH_SHORT).show();
@@ -301,28 +293,4 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                 }));
     }
 
-    private void loadUserInfoToDb(String email, String password) {
-       compositeDisposable.add(myAPI.getSelfInfo(email, password)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<String>() {
-                    @Override
-                    public void accept(String s) throws Exception {
-                        Log.d("TESTING S VALUE", s);
-                        Gson gson = new Gson();
-                        Type listType = new TypeToken<List<ObjectModelgetSelfInfo>>(){}.getType();
-                        List<ObjectModelgetSelfInfo> postsSelf = gson.fromJson(s, listType);
-                        Log.d("Please God work", postsSelf.get(0).getName());
-
-
-                        User user = new User(0,
-                                        user_entered_email,
-                                        user_entered_pass,
-                                        postsSelf.get(0).getName(),
-                                        postsSelf.get(0).getUnique_id());
-
-                        userDb.userDao().addUserInfo(user);
-                    }
-                }));
-    }
 }

@@ -13,7 +13,7 @@ public interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void addUserInfo(User user);
 
-    @Query("SELECT * FROM user")
+    @Query("SELECT * FROM user WHERE user_id=1")
     User getUserInfo();
 
     @Query("SELECT name FROM user WHERE user_id=1")

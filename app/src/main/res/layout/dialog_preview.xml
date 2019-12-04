@@ -23,7 +23,7 @@
                 android:layout_marginRight="10sp"
                 android:layout_marginEnd="10sp"
                 android:textAllCaps="true"
-                app:fontFamily="monospace"
+                app:fontFamily="sans-serif"
                 android:textSize="18sp"
                 android:textColor="@color/colorPreviewDialog"
                 android:gravity="center|top"
@@ -43,7 +43,7 @@
                 android:layout_marginStart="10sp"
                 android:layout_marginRight="10sp"
                 android:layout_marginEnd="10sp"
-                app:fontFamily="monospace"
+                app:fontFamily="sans-serif"
                 android:textSize="14sp"
                 android:textColor="@color/colorPreviewDialog"
                 app:layout_constraintTop_toBottomOf="@+id/game_title"
@@ -65,7 +65,7 @@
                 android:layout_marginRight="10sp"
                 android:layout_marginEnd="10sp"
                 android:textSize="14sp"
-                app:fontFamily="monospace"
+                app:fontFamily="sans-serif"
                 android:textColor="@color/colorPreviewDialog"
                 app:layout_constraintTop_toBottomOf="@id/game_title"/>
         </ScrollView>

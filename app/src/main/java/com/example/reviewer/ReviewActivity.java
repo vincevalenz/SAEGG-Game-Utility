@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.reviewer.Retrofit.INodeJS;
 import com.example.reviewer.Retrofit.RetrofitClient;
 import com.example.reviewer.RoomDb.AppDatabase;
+import com.example.reviewer.RoomDb.Models.User;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -78,6 +79,8 @@ public class ReviewActivity extends AppCompatActivity implements PreviewDialog.P
                 "user")
                 .allowMainThreadQueries()
                 .build();
+
+        User user = userDb.userDao().getUserInfo();
 
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,6 +143,7 @@ public class ReviewActivity extends AppCompatActivity implements PreviewDialog.P
                         }
                     }));
         }
+        finish();
     }
 
 }
