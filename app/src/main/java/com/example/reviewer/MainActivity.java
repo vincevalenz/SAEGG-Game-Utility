@@ -1,17 +1,14 @@
 package com.example.reviewer;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import com.example.reviewer.Models.ObjectModelgetSelfInfo;
 import com.example.reviewer.Retrofit.INodeJS;
@@ -21,8 +18,6 @@ import com.example.reviewer.Models.ObjectModelgetGameReviews;
 import com.example.reviewer.Models.ObjectModelgetGamesList;
 import com.example.reviewer.Models.ObjectModelgetProfileReview;
 import com.example.reviewer.Models.ObjectModelgetProfileUser;
-import com.example.reviewer.RoomDb.AppDatabase;
-import com.example.reviewer.RoomDb.Models.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -47,9 +42,6 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
     private String username_register, password_register, email_register;
 
     Button debug_button;
-
-    AppDatabase userDb;
-    User user;
 
     @Override
     protected void onStop() {
@@ -135,7 +127,6 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                 int page = 1;
 
                 //Testing function:
-                loadUserInfoToDb("test@test", "password");
             }
         });
 
@@ -282,46 +273,11 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                     public void accept(String s) throws Exception {
                         if(s.contains("encrypted_password")){
                             Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
-
                             openHomeActivity();
                         } else {
                             Toast.makeText(MainActivity.this, "Login Failure"+s, Toast.LENGTH_SHORT).show();
                         }
                     }
                 }));
-    }
-
-
-    private boolean loadUserInfoToDb(String email, String password) {
-
-       compositeDisposable.add(myAPI.getSelfInfo(email, password)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<String>() {
-                    @Override
-                    public void accept(String s) throws Exception {
-                        Log.d("TESTING S VALUE", s);
-                        Gson gson = new Gson();
-                        Type listType = new TypeToken<List<ObjectModelgetSelfInfo>>(){}.getType();
-                        List<ObjectModelgetSelfInfo> postsSelf = gson.fromJson(s, listType);
-
-
-                         user = new User(1,
-                                        edit_email.getText().toString(),
-                                        edit_password.getText().toString(),
-                                        postsSelf.get(0).getName(),
-                                        postsSelf.get(0).getUnique_id());
-                        userDb = Room.databaseBuilder(getApplicationContext(),
-                                AppDatabase.class,
-                                "user")
-                                .allowMainThreadQueries()
-                                .build();
-                        userDb.userDao().addUserInfo(user);
-
-                        Log.d("Please God work", postsSelf.get(0).getName());
-                    }
-                }));
-       return true;
-
     }
 }

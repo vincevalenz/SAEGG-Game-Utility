@@ -1,6 +1,7 @@
 package com.example.reviewer;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +16,6 @@ import com.example.reviewer.Retrofit.INodeJS;
 import com.example.reviewer.Retrofit.RetrofitClient;
 import com.example.reviewer.RoomDb.AppDatabase;
 
-import com.example.reviewer.RoomDb.Models.Game;
 import com.example.reviewer.RoomDb.Models.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -36,8 +36,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private String email, password;
 
-    AppDatabase gameDb,
-                userDb;
+    AppDatabase gameDb, userDb;
     User user;
 
     Button rec_page_button,

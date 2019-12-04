@@ -31,6 +31,13 @@ public class Game {
         this.image_urls = image_urls;
     }
 
+    @Ignore
+    public Game(int game_id, String name, String image) {
+        this.game_id = game_id;
+        this.name = name;
+        this.image_urls[0] = image;
+    }
+
     public int getGame_id() {
         return game_id;
     }
