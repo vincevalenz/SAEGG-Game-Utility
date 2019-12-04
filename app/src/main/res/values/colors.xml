@@ -3,7 +3,7 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="colorPreviewDialog">#433C2D</color>
-    <color name="colorPreviewDialogBackground">#D7DEE7</color>
+    <color name="colorPreviewDialog">#161615</color>
+    <color name="colorPreviewDialogBackground">#FFFFFF</color>
     <color name="colorRatingTint">#FFC107</color>
 </resources>

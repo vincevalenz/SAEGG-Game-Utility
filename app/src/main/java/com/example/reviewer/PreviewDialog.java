@@ -43,7 +43,6 @@ public class PreviewDialog extends AppCompatDialogFragment {
 
 
         builder.setView(view)
-                .setTitle("Preview")
                 .setNegativeButton("Edit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
