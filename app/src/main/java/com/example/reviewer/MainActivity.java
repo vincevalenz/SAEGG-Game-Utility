@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadUserInfoToDb(edit_email.getText().toString(), edit_password.getText().toString());
                 loginUser(edit_email.getText().toString(),edit_password.getText().toString());
             }
         });
@@ -136,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                 int page = 1;
 
                 //Testing function:
-                getSelfInfo(email, password);
+                loadUserInfoToDb("test@test", "password");
             }
         });
 
@@ -144,6 +143,11 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
 
     public void openHomeActivity() {
         Intent intent = new Intent(this, HomeActivity.class);
+        Bundle extras = new Bundle();
+        extras.putString("email", edit_email.getText().toString());
+        extras.putString("password", edit_password.getText().toString());
+        intent.putExtras(extras);
+
         startActivity(intent);
     }
 
@@ -278,6 +282,7 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                     public void accept(String s) throws Exception {
                         if(s.contains("encrypted_password")){
                             Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+
                             openHomeActivity();
                         } else {
                             Toast.makeText(MainActivity.this, "Login Failure"+s, Toast.LENGTH_SHORT).show();
@@ -286,7 +291,9 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                 }));
     }
 
-    private void loadUserInfoToDb(String email, String password) {
+
+    private boolean loadUserInfoToDb(String email, String password) {
+
        compositeDisposable.add(myAPI.getSelfInfo(email, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -299,7 +306,7 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                         List<ObjectModelgetSelfInfo> postsSelf = gson.fromJson(s, listType);
 
 
-                         user = new User(0,
+                         user = new User(1,
                                         edit_email.getText().toString(),
                                         edit_password.getText().toString(),
                                         postsSelf.get(0).getName(),
@@ -314,6 +321,7 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                         Log.d("Please God work", postsSelf.get(0).getName());
                     }
                 }));
+       return true;
 
     }
 }
