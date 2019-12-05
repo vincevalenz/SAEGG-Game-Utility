@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import com.example.reviewer.Models.ObjectModelgetSelfInfo;
 import com.example.reviewer.Retrofit.INodeJS;
@@ -18,6 +19,8 @@ import com.example.reviewer.Models.ObjectModelgetGameReviews;
 import com.example.reviewer.Models.ObjectModelgetGamesList;
 import com.example.reviewer.Models.ObjectModelgetProfileReview;
 import com.example.reviewer.Models.ObjectModelgetProfileUser;
+import com.example.reviewer.RoomDb.AppDatabase;
+import com.example.reviewer.RoomDb.Models.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -40,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
     private Button register_button,login_button;
 
     private String username_register, password_register, email_register;
+
+    private AppDatabase appDb;
+    private User user;
 
     Button debug_button;
 
@@ -85,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loadUserInfoToDb(edit_email.getText().toString(), edit_password.getText().toString());
                 loginUser(edit_email.getText().toString(),edit_password.getText().toString());
             }
         });
@@ -117,12 +124,12 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                 int page = 1;
 
                 //Testing function:
-                getGamesList(1,1);
+                getGameInfo(1);
             }
         });
 
-        getGameInfo(1);
-        getGamesList(4,1);
+        //getGameInfo(1);
+        //getGamesList(4,1);
 
     }
 
@@ -273,5 +280,33 @@ public class MainActivity extends AppCompatActivity implements RegisterDialog.Re
                         }
                     }
                 }));
+    }
+
+    private void loadUserInfoToDb(final String email, final String password) {
+        compositeDisposable.add(myAPI.getSelfInfo(email, password)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        Log.d("TESTING S VALUE", s);
+                        Gson gson = new Gson();
+                        Type listType = new TypeToken<List<ObjectModelgetSelfInfo>>(){}.getType();
+                        List<ObjectModelgetSelfInfo> postsSelf = gson.fromJson(s, listType);
+                        user = new User(1,
+                                email,
+                                password,
+                                postsSelf.get(0).getName(),
+                                postsSelf.get(0).getUnique_id());
+                        appDb = Room.databaseBuilder(getApplicationContext(),
+                                AppDatabase.class,
+                                "user")
+                                .allowMainThreadQueries()
+                                .build();
+                        appDb.userDao().addUserInfo(user);
+                        Log.d("Please God work", postsSelf.get(0).getName());
+                    }
+                }));
+
     }
 }

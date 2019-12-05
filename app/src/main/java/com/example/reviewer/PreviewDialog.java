@@ -18,9 +18,10 @@ public class PreviewDialog extends AppCompatDialogFragment {
     private TextView gameTitle,
                      reviewBody;
     private RatingBar rating;
+    private int game_id;
     private PreviewDialogListener listener;
 
-    static PreviewDialog newInstance(String gameTitle, String reviewBody, int rating) {
+    static PreviewDialog newInstance(String gameTitle, String reviewBody, int rating, int game_id) {
         PreviewDialog preview = new PreviewDialog();
 
         // Supply input as an arguments to display.
@@ -28,6 +29,7 @@ public class PreviewDialog extends AppCompatDialogFragment {
         args.putString("gameTitle", gameTitle);
         args.putString("reviewBody", reviewBody);
         args.putInt("gameRating", rating);
+        args.putInt("game_id", game_id);
         preview.setArguments(args);
 
         return preview;
@@ -51,7 +53,7 @@ public class PreviewDialog extends AppCompatDialogFragment {
                 .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        int     game = 1,        // TBD where from
+                        int     game = game_id,       // TBD where from
                                 rating = getArguments().getInt("gameRating");
 
                         String  review = reviewBody.getText().toString();
@@ -67,6 +69,7 @@ public class PreviewDialog extends AppCompatDialogFragment {
         gameTitle.setText(getArguments().getString("gameTitle"));
         reviewBody.setText(getArguments().getString("reviewBody"));
         rating.setRating((float)getArguments().getInt("gameRating"));
+        game_id = getArguments().getInt("game_id");
         //Drawable drawable = rating.getProgressDrawable();
         //drawable.setColorFilter(Color.parseColor("#FFC107"), PorterDuff.Mode.SRC_ATOP);
 

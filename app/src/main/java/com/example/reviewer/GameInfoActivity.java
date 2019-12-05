@@ -132,7 +132,8 @@ public class GameInfoActivity extends AppCompatActivity{
         reviewGameBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openReviewPage(gameId);
+                gameDb.gameDao().addGame(game);
+                openReviewPage(name);
             }
         });
 
@@ -155,9 +156,9 @@ public class GameInfoActivity extends AppCompatActivity{
         startActivity(intent);
     }
 
-    private void openReviewPage(int id) {
+    private void openReviewPage(String name) {
         Intent intent = new Intent(this, ReviewActivity.class);
-        intent.putExtra("game_id", id);
+        intent.putExtra("game_id", name);
         startActivity(intent);
     }
 
