@@ -30,7 +30,7 @@ public class GameInfoActivity extends AppCompatActivity{
     public TextView gameTitle;
     public TextView gameDesc;
 
-    Button userProfileBtn, addGameToListBtn;
+    Button userProfileBtn, addGameToListBtn, reviewGameBtn;
 
     AppDatabase gameDb;
     Game game = new Game();
@@ -41,7 +41,7 @@ public class GameInfoActivity extends AppCompatActivity{
         setContentView(R.layout.activity_game_info);
 
         Bundle bundle = getIntent().getExtras();
-        final int id = bundle.getInt("game_id");
+        final int gameId = bundle.getInt("game_id");
         final String name = bundle.getString("game_name"),
                 desc = bundle.getString("game_desc") ,
                 img_1 = bundle.getString("game_img_1"),
@@ -56,6 +56,7 @@ public class GameInfoActivity extends AppCompatActivity{
         gameDesc = findViewById(R.id.game_summary);
         userProfileBtn = findViewById(R.id.info_page_user_profile_button);
         addGameToListBtn = findViewById(R.id.add_game_to_list_button);
+        reviewGameBtn = findViewById(R.id.info_page_review_game_button);
 
         gameDb = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class,
@@ -70,7 +71,7 @@ public class GameInfoActivity extends AppCompatActivity{
             images[3] = img_4;
             images[4] = img_5;
 
-            game.setGame_id(id);
+            game.setGame_id(gameId);
             game.setName(name);
             game.setDescription(desc);
             game.setImage_urls(images);
@@ -95,6 +96,7 @@ public class GameInfoActivity extends AppCompatActivity{
             carouselView.setImageListener(imageListener);
         }
 
+        // onClickListeners...
         userProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,13 +110,12 @@ public class GameInfoActivity extends AppCompatActivity{
             public void onClick(View v) {
                 //add game to local list
 
-                String gameName = name, gameDesc = desc;
                 List<Game> currentGames = gameDb.gameDao().getAllGames();
                 boolean exists = false;
                 for(int i = 0; i < currentGames.size(); i++) {
                     //for each game already in list, check if duplicate exists
-                    if(gameName.equals(currentGames.get(i).getName())
-                            && gameDesc.equals(currentGames.get(i).getDescription())) {
+                    if(name.equals(currentGames.get(i).getName())
+                            && desc.equals(currentGames.get(i).getDescription())) {
                         exists = true;
                     }
                 }
@@ -128,8 +129,16 @@ public class GameInfoActivity extends AppCompatActivity{
             }
         });
 
+        reviewGameBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openReviewPage(gameId);
+            }
+        });
+
     }
 
+    //for carousel
     ImageListener imageListener = new ImageListener() {
         @Override
         public void setImageForPosition(int position, ImageView imageView) {
@@ -143,6 +152,12 @@ public class GameInfoActivity extends AppCompatActivity{
     private void openUserProfile(String userName) {
         Intent intent = new Intent(this, UserProfileActivity.class);
         intent.putExtra("user_name", userName);
+        startActivity(intent);
+    }
+
+    private void openReviewPage(int id) {
+        Intent intent = new Intent(this, ReviewActivity.class);
+        intent.putExtra("game_id", id);
         startActivity(intent);
     }
 
